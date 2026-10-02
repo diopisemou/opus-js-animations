@@ -1,0 +1,6 @@
+#!/bin/sh
+# Headless Chromium for the render tools: --no-sandbox because cloud containers run as root.
+for c in "$CHROME_BIN" /opt/pw-browsers/chromium-*/chrome-linux/chrome /usr/bin/chromium /usr/bin/google-chrome; do
+  [ -n "$c" ] && [ -x "$c" ] && exec "$c" --no-sandbox --disable-dev-shm-usage "$@"
+done
+echo "no Chromium found; set CHROME_BIN" >&2; exit 1
