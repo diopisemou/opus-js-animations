@@ -67,3 +67,44 @@ the other three languages are cheap re-renders from `strings.py`.
   - contact sheet every 0.5 s.
   - Score: −16.1 LUFS before normalising to −14 for the upload, sample peak −1.9 dBFS. Not listened to.
 - **Speed:** about 2–3 s per frame on a CPU-only machine (SwiftShader). A machine with a GPU is far faster.
+
+---
+
+## Revision 1: "Replace the orb and static elements with a car or real ride elements that makes more sense"
+
+The same structure, timing and score; every abstract element becomes something from a ride:
+
+| Time | v1 | v2 |
+|---|---|---|
+| 0–1 | amber dot + radar rings | **a car seen from above** driving up a night avenue, a location pulse under it, the indicator blinking |
+| 1–2 | offer pill | a **pickup pin** and a far **drop-off pin** drop on the map, the **route** draws itself, and the offer pill (odometer $18.40, countdown) pops |
+| 2–3 | DO / THE / MATHS? on black | the same type **over the map**; the raining numbers are the trip's own figures |
+| 3–4 | liquid-metal orb | the camera dives into the car: the numbers fall into the **speedometer**, whose needle thrashes and overheats |
+| 4 | the orb snaps into the dial | **the speedometer becomes the Rate Dial** (same gauge, new meaning) |
+| 4.5–7.5 | gradient, rose tint, sunburst | through the windscreen: a **red traffic light** on PASS; it turns **green** on TAKE (lens flare) and the car pulls away |
+| 7.5–9 | god rays over black | **street lights streaking past**, headlight beams (god rays) |
+| 9–11 | text pills + lock on aurora | back above the car: **$/h, $/km, pickup pin, stranding pin with the dashed empty drive back, EV battery**, which gather into the **phone in its mount** with a lock: ON-DEVICE |
+| 11–13.5 | headline on aurora | the headline seen **from the driver's seat**, driving at night |
+| 13.5–16 | logo on a gradient | the logo over the **map at night**, the car driving on |
+
+The first version is kept as `ridesentinel-reel-en-v1.mp4` for comparison.
+
+### Build notes (v2)
+- **Files:**
+  - `reel-scene.part.js` is v2; v1's scene is kept as `reel-scene.v1.part.js`;
+  - the street seen through the windscreen reuses the French film's street (`fr-car.part.js`).
+- **Shader layers:** only **Godrays** (headlight beams on the claim and the headline) and **LensFlare** (the light turning green on TAKE) are left. Both
+  are screen-blended over drawn scenes. The gradient, aurora, sunburst and liquid-metal layers are gone with the abstract shapes.
+- **One continuous world:**
+  - the map scrolls with the car (`150 px/s`);
+  - the cockpit's street moves at the car's integrated speed: stopped at the red light, pulling away on green;
+  - the speedometer's needle is the same object as the Rate Dial's.
+- **Score:** the v1 score plus an engine (idle at the light, revving on TAKE) and indicator ticks.
+- **Found while inspecting:**
+  1. The traffic light and the verdict word carried into the headline shot. Both now end at 9 s.
+  2. The dial's "YOUR $40 BAR" label showed through the headline. It now fades on the headline.
+  3. The logo's dark bed had a hard edge. It's now a radial fade.
+- **Verified:**
+  - `verify.mjs` is pure at 0.6, 1.8, 3.4, 4.2, 5.1, 6.5, 8.2, 10.2, 12.4 and 15 s, and again after the last fixes.
+  - Contact sheets every 0.5 s.
+  - Score: −15.5 LUFS before normalising to −14, sample peak −2.0 dBFS. Not listened to.

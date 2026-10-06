@@ -35,3 +35,12 @@
   pad(TL.logo, DURATION - TL.logo, [130.81, 196, 329.63, 493.88, 587.33], .9);
   bass(TL.logo, 65.41, DURATION - TL.logo - .3, .5);
   bell(TL.logo + .95, 523.25, .5); bell(TL.logo + 1.05, 783.99, .32);
+  // v2: the car. An engine under the cockpit shots, climbing as the green light lets it go
+  for (const [a, b] of COCKPIT) {
+    const g = gain(bassB); g.gain.setValueAtTime(0, a); g.gain.linearRampToValueAtTime(.28, a + .2); g.gain.setValueAtTime(.28, b - .2); g.gain.linearRampToValueAtTime(0, b);
+    const lp = filt('lowpass', 320, 2, g);
+    for (const m of [1, 1.5]) { const o = osc('sawtooth', 42 * m, a, b - a, lp);
+      if (a < TL.take && b > TL.take) { o.frequency.setValueAtTime(42 * m, TL.take); o.frequency.linearRampToValueAtTime(78 * m, 7.5); o.frequency.setValueAtTime(78 * m, 8.9); } }
+  }
+  // the light changes: a soft relay click on red, on green
+  tick(TL.swing1[0] - .2, 0, .3); tick(TL.take - .02, 1, .35);
