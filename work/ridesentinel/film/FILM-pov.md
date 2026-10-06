@@ -142,8 +142,10 @@ everywhere: expressive in act 1 (lower stability), steadier in act 2. I'll offer
   - A dry run with a synthetic voice exercised the whole voice path (align → embed → mix → render).
   - I read contact sheets for EN, FR, AR and ZH.
 
-## To finish (needs the ElevenLabs key)
-1. Add `ELEVENLABS_API_KEY` as an environment variable in the cloud environment settings (or `~/.config/opus-js-animations/keys.env`).
-2. `apt-get install -y ffmpeg` if it's missing, then from `work/ridesentinel`: `./finish-pov.sh` (or `./finish-pov.sh "<voice>" en fr`).
-3. Check the voiced lines (`source/pov-<lang>/voice.align.json` prints each line's times), read a contact sheet, then post
-   `film/ridesentinel-pov-<lang>.mp4`.
+## Voiced and rendered
+- **Voice:** Liam (ElevenLabs). The measured lengths are EN 30.6 s, FR 33.2, PT 33.8, AR 41.3 and ZH 32.7; the films run 32–43 s.
+- **Renders:** `ridesentinel-pov-{en,fr,pt,ar,zh}.mp4`:
+  - 1080×1920, 30 fps, −14 LUFS;
+  - `verify.mjs` passes for every language;
+  - I read contact sheets for EN, AR and ZH.
+- **Re-voice or re-render:** `./finish-pov.sh "<voice>" <langs>`.
