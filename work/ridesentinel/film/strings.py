@@ -162,6 +162,15 @@ POV = {
 for k, v in POV.items():
     LANGS[k]['pov'] = v
 
+# "The 16-second reel" (English first; the other languages can follow the same keys)
+LANGS['en']['reel'] = dict(
+    hud=['RS-01 · REEL', '02:04 AM · MTL', 'REC'], offer='NEW OFFER', fare=18.40, words=['DO', 'THE', 'MATHS?'],
+    bar='YOUR $40 BAR', perHr='/h', pass_='PASS', take='TAKE', claim=['IN ONE', 'SECOND.'],
+    rulesTitle='YOUR RULES', rules=['$/h', '$/km', 'pickup', 'stranding', 'EV range'], lock='ON-DEVICE', lockSub='Nothing leaves the phone.',
+    head=[[['Stop', ''], ['doing', '']], [['maths', 'amber'], ['at', '']], [['the', ''], ['wheel.', '']]],
+    cta='Ask about early access', fine=['Android · in development · example offers', 'Independent project, not affiliated with Uber'],
+)
+
 if __name__ == '__main__':
     open('strings.js', 'w').write('window.LANGS = ' + json.dumps(LANGS, ensure_ascii=False, indent=1) + ';\n')
     for k in ('ar', 'zh'):

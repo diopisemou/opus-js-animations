@@ -15,7 +15,7 @@ const times = args.times ? String(args.times).split(',').map(Number)
   : Array.from({ length: 9 }, (_, i) => +(duration * (i + .5) / 9).toFixed(3));
 
 const hash = async t => {
-  const px = await film.ev(`(() => { __film.seek(${t}); const c = document.getElementById('c') || document.querySelector('canvas');
+  const px = await film.ev(`(async () => { await __film.seek(${t}); const c = document.getElementById('c') || document.querySelector('canvas');
     window.__v = c.toDataURL('image/png'); return window.__v.length; })()`);
   let u = ''; for (let i = 0; i < px; i += 1 << 20) u += await film.ev(`window.__v.slice(${i}, ${i + (1 << 20)})`);
   return createHash('sha1').update(u).digest('hex').slice(0, 12);

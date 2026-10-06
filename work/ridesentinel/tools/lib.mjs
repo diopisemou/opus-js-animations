@@ -67,7 +67,7 @@ export async function openFilm(htmlPath, { port = 9400 + Math.floor(Math.random(
   await send('Page.navigate', { url });
   // Navigation returns before the page loads; poll for the contract, not a timer.
   let ok = false;
-  for (let i = 0; i < 300; i++) {
+  for (let i = 0; i < 3000; i++) {                                 // up to 5 min: films with shader layers warm up first
     try { ok = await ev('!!(window.__film && window.__film.ready)'); } catch {}
     if (ok) break;
     await sleep(100);
@@ -83,7 +83,8 @@ export async function openFilm(htmlPath, { port = 9400 + Math.floor(Math.random(
 // Seek and grab the canvas as JPEG (or PNG) bytes.
 export async function grab(ev, t, type = 'image/jpeg', q = .95) {
   // chunked: one multi-MB CDP message stalls in this container
-  const n = await ev(`(__film.seek(${t}), window.__grab = (document.getElementById('c') || document.querySelector('canvas')).toDataURL('${type}', ${q}), window.__grab.length)`);
+  // seek may be async (a film with GPU shader layers awaits them); awaiting a plain value is harmless
+  const n = await ev(`(async () => { await __film.seek(${t}); window.__grab = (document.getElementById('c') || document.querySelector('canvas')).toDataURL('${type}', ${q}); return window.__grab.length; })()`);
   let url = '';
   for (let i = 0; i < n; i += 1 << 20) url += await ev(`window.__grab.slice(${i}, ${i + (1 << 20)})`);
   return Buffer.from(url.slice(url.indexOf(',') + 1), 'base64');

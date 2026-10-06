@@ -253,6 +253,75 @@ window.LANGS = {
     "???"
    ],
    "expired": "Offer expired"
+  },
+  "reel": {
+   "hud": [
+    "RS-01 · REEL",
+    "02:04 AM · MTL",
+    "REC"
+   ],
+   "offer": "NEW OFFER",
+   "fare": 18.4,
+   "words": [
+    "DO",
+    "THE",
+    "MATHS?"
+   ],
+   "bar": "YOUR $40 BAR",
+   "perHr": "/h",
+   "pass_": "PASS",
+   "take": "TAKE",
+   "claim": [
+    "IN ONE",
+    "SECOND."
+   ],
+   "rulesTitle": "YOUR RULES",
+   "rules": [
+    "$/h",
+    "$/km",
+    "pickup",
+    "stranding",
+    "EV range"
+   ],
+   "lock": "ON-DEVICE",
+   "lockSub": "Nothing leaves the phone.",
+   "head": [
+    [
+     [
+      "Stop",
+      ""
+     ],
+     [
+      "doing",
+      ""
+     ]
+    ],
+    [
+     [
+      "maths",
+      "amber"
+     ],
+     [
+      "at",
+      ""
+     ]
+    ],
+    [
+     [
+      "the",
+      ""
+     ],
+     [
+      "wheel.",
+      ""
+     ]
+    ]
+   ],
+   "cta": "Ask about early access",
+   "fine": [
+    "Android · in development · example offers",
+    "Independent project, not affiliated with Uber"
+   ]
   }
  },
  "pt": {
