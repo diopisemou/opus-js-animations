@@ -1,0 +1,32 @@
+<!doctype html>
+<!--
+  RideSentinel: "Drivers, quick one" (UGC ad), ~30–45 s, 9:16, 1080×1920 @ 30 fps.
+  Contract: window.__film = { duration, ready, seek(t), shots, marks, wav() }. seek(t) is pure in t.
+  URL params: ?t=12.5 freeze · ?capture=1 no player · ?ss=2 supersampled.
+  The score is generated from the same TIMELINE the picture reads (renderMix), offline for export.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RideSentinel UGC (EN)</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+  html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+  body { display: grid; place-items: center; }
+  canvas { max-width: 100vw; max-height: 100vh; width: auto; height: auto; display: block; }
+  #start { position: fixed; inset: 0; display: grid; place-items: center; color: #EEF1F7; font: 600 20px "IBM Plex Sans", system-ui, sans-serif;
+           background: rgba(12,18,32,.6); cursor: pointer; }
+</style>
+</head>
+<body>
+<canvas id="c"></canvas>
+<div id="start">click to play · sound on</div>
+<script src="strings.js"></script>
+<script>window.FILM_LANG = "en";</script>
+<script src="audio-ugc-en.js" onerror="window.FILM_AUDIO_B64 = null"></script>
+<script src="align-ugc-en.js" onerror="window.UGC_ALIGN = null"></script>
+<script src="aroll-en.js" onerror="window.UGC_AROLL = null"></script>
+<script src="ugc.js"></script>
+</body>
+</html>

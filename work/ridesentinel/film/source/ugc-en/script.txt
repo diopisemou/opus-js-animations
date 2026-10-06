@@ -1,0 +1,8 @@
+Drivers, quick one. Stop doing maths at red lights.
+An offer pops up: eighteen forty, seven minutes away, thirty-one minute trip. You’ve got fifteen seconds.
+Is that even forty an hour after the drive back? Nobody does that in their head.
+That’s why we’re building RideSentinel.
+It reads the offer and gives you one number: what you really make per hour, pickup and drive back included.
+Below your bar? Pass. Above it? Take.
+And it all runs on your phone. Nothing leaves it.
+Early access on Android is open. Link: ridesentinel dot app.

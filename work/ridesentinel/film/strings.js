@@ -254,6 +254,33 @@ window.LANGS = {
    ],
    "expired": "Offer expired"
   },
+  "ugc": {
+   "voice": "Bachir Avatar",
+   "lock": "ON-DEVICE",
+   "lockSub": "Nothing leaves the phone.",
+   "ai": "AI avatar",
+   "stamp": [
+    "STOP",
+    "DOING",
+    "MATHS"
+   ],
+   "lines": [
+    "Drivers, quick one. Stop doing maths at red lights.",
+    "An offer pops up: eighteen forty, seven minutes away, thirty-one minute trip. You’ve got fifteen seconds.",
+    "Is that even forty an hour after the drive back? Nobody does that in their head.",
+    "That’s why we’re building RideSentinel.",
+    "It reads the offer and gives you one number: what you really make per hour, pickup and drive back included.",
+    "Below your bar? Pass. Above it? Take.",
+    "And it all runs on your phone. Nothing leaves it.",
+    "Early access on Android is open. Link: ridesentinel dot app."
+   ],
+   "frags": [
+    "18.40 × 60",
+    "÷ 38 = ?",
+    "+ drive back?",
+    "$40/hr??"
+   ]
+  },
   "reel": {
    "hud": [
     "RS-01 · REEL",
@@ -702,6 +729,33 @@ window.LANGS = {
     "؟؟؟"
    ],
    "expired": "انتهى العرض"
+  },
+  "ugc": {
+   "voice": "Bachir AR",
+   "lock": "على الجهاز",
+   "lockSub": "لا شيء يغادر الهاتف.",
+   "ai": "أفاتار بالذكاء الاصطناعي",
+   "stamp": [
+    "توقّفوا",
+    "عن",
+    "الحساب"
+   ],
+   "lines": [
+    "يا سائقين، سؤال سريع. توقّفوا عن الحساب عند الإشارة الحمراء.",
+    "يصلك عرض: ثمانية عشر وأربعون، على بعد سبع دقائق، رحلة إحدى وثلاثين دقيقة. أمامك خمس عشرة ثانية.",
+    "هل هذا أربعون في الساعة على الأقل مع طريق العودة؟ لا أحد يحسب هذا في رأسه.",
+    "لهذا نبني رايد سنتينل.",
+    "يقرأ العرض ويعطيك رقمًا واحدًا: ربحك الحقيقي في الساعة، مع الوصول وطريق العودة.",
+    "أقل من حدّك؟ ارفض. أعلى منه؟ اقبل.",
+    "وكل شيء يعمل على هاتفك. لا شيء يخرج منه.",
+    "الوصول المبكر على أندرويد مفتوح. الرابط: رايد سنتينل دوت آب."
+   ],
+   "frags": [
+    "18.40 × 60",
+    "÷ 38 = ؟",
+    "+ العودة؟",
+    "$40/ساعة؟؟"
+   ]
   }
  },
  "zh": {
@@ -1116,6 +1170,33 @@ window.LANGS = {
     "???"
    ],
    "expired": "Offre expirée"
+  },
+  "ugc": {
+   "voice": "Bachir Voice FR",
+   "lock": "SUR L’APPAREIL",
+   "lockSub": "Rien ne quitte le téléphone.",
+   "ai": "Avatar IA",
+   "stamp": [
+    "ARRÊTEZ",
+    "DE",
+    "CALCULER"
+   ],
+   "lines": [
+    "Les chauffeurs, petite question. Arrêtez de calculer aux feux rouges.",
+    "Une offre arrive : dix-huit quarante, à sept minutes, trente et une minutes de trajet. Vous avez quinze secondes.",
+    "Est-ce que ça fait au moins quarante de l’heure, avec le retour ? Personne ne calcule ça de tête.",
+    "C’est pour ça qu’on construit RideSentinel.",
+    "L’appli lit l’offre et vous donne un seul chiffre : ce que vous gagnez vraiment de l’heure, approche et retour compris.",
+    "Sous votre seuil ? Vous passez. Au-dessus ? Vous prenez.",
+    "Et tout se passe sur votre téléphone. Rien n’en sort.",
+    "L’accès anticipé sur Android est ouvert. Lien : ridesentinel point app."
+   ],
+   "frags": [
+    "18,40 × 60",
+    "÷ 38 = ?",
+    "+ retour ?",
+    "40 $/h ??"
+   ]
   }
  }
 };

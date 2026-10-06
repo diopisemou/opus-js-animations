@@ -162,6 +162,42 @@ POV = {
 for k, v in POV.items():
     LANGS[k]['pov'] = v
 
+# "Drivers, quick one": the UGC ad (EN, FR, AR), voiced by the founder's cloned voices, with an AI-generated presenter
+UGC = {
+  'en': dict(voice='Bachir Avatar', lock='ON-DEVICE', lockSub='Nothing leaves the phone.', ai='AI avatar', stamp=['STOP', 'DOING', 'MATHS'], lines=[
+    'Drivers, quick one. Stop doing maths at red lights.',
+    'An offer pops up: eighteen forty, seven minutes away, thirty-one minute trip. You’ve got fifteen seconds.',
+    'Is that even forty an hour after the drive back? Nobody does that in their head.',
+    'That’s why we’re building RideSentinel.',
+    'It reads the offer and gives you one number: what you really make per hour, pickup and drive back included.',
+    'Below your bar? Pass. Above it? Take.',
+    'And it all runs on your phone. Nothing leaves it.',
+    'Early access on Android is open. Link: ridesentinel dot app.'],
+    frags=['18.40 × 60', '÷ 38 = ?', '+ drive back?', '$40/hr??']),
+  'fr': dict(voice='Bachir Voice FR', lock='SUR L’APPAREIL', lockSub='Rien ne quitte le téléphone.', ai='Avatar IA', stamp=['ARRÊTEZ', 'DE', 'CALCULER'], lines=[
+    'Les chauffeurs, petite question. Arrêtez de calculer aux feux rouges.',
+    'Une offre arrive : dix-huit quarante, à sept minutes, trente et une minutes de trajet. Vous avez quinze secondes.',
+    'Est-ce que ça fait au moins quarante de l’heure, avec le retour ? Personne ne calcule ça de tête.',
+    'C’est pour ça qu’on construit RideSentinel.',
+    'L’appli lit l’offre et vous donne un seul chiffre : ce que vous gagnez vraiment de l’heure, approche et retour compris.',
+    'Sous votre seuil ? Vous passez. Au-dessus ? Vous prenez.',
+    'Et tout se passe sur votre téléphone. Rien n’en sort.',
+    'L’accès anticipé sur Android est ouvert. Lien : ridesentinel point app.'],
+    frags=['18,40 × 60', '÷ 38 = ?', '+ retour ?', '40 $/h ??']),
+  'ar': dict(voice='Bachir AR', lock='على الجهاز', lockSub='لا شيء يغادر الهاتف.', ai='أفاتار بالذكاء الاصطناعي', stamp=['توقّفوا', 'عن', 'الحساب'], lines=[
+    'يا سائقين، سؤال سريع. توقّفوا عن الحساب عند الإشارة الحمراء.',
+    'يصلك عرض: ثمانية عشر وأربعون، على بعد سبع دقائق، رحلة إحدى وثلاثين دقيقة. أمامك خمس عشرة ثانية.',
+    'هل هذا أربعون في الساعة على الأقل مع طريق العودة؟ لا أحد يحسب هذا في رأسه.',
+    'لهذا نبني رايد سنتينل.',
+    'يقرأ العرض ويعطيك رقمًا واحدًا: ربحك الحقيقي في الساعة، مع الوصول وطريق العودة.',
+    'أقل من حدّك؟ ارفض. أعلى منه؟ اقبل.',
+    'وكل شيء يعمل على هاتفك. لا شيء يخرج منه.',
+    'الوصول المبكر على أندرويد مفتوح. الرابط: رايد سنتينل دوت آب.'],
+    frags=['18.40 × 60', '÷ 38 = ؟', '+ العودة؟', '$40/ساعة؟؟']),
+}
+for k, v in UGC.items():
+    LANGS[k]['ugc'] = v
+
 # "The 16-second reel" (English first; the other languages can follow the same keys)
 LANGS['en']['reel'] = dict(
     hud=['RS-01 · REEL', '02:04 AM · MTL', 'REC'], offer='NEW OFFER', fare=18.40, words=['DO', 'THE', 'MATHS?'],
@@ -180,6 +216,9 @@ if __name__ == '__main__':
     for k, v in POV.items():
         d = pathlib.Path(f'source/pov-{k}'); d.mkdir(parents=True, exist_ok=True)
         ls = v['lines']; (d / 'script.txt').write_text('\n'.join(ls[:6]) + '\n\n' + '\n'.join(ls[6:]) + '\n')
+    for k, v in UGC.items():
+        d = pathlib.Path(f'source/ugc-{k}'); d.mkdir(parents=True, exist_ok=True)
+        (d / 'script.txt').write_text('\n'.join(v['lines']) + '\n')
     for k in ('ar', 'zh'):
         chars = sorted(set(json.dumps(LANGS[k], ensure_ascii=False)) - set('\n'))
         open(f'chars-{k}.txt', 'w').write(''.join(c for c in chars if ord(c) > 127) + '0123456789$%?.,:·—…')
