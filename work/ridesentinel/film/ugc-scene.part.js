@@ -68,6 +68,7 @@ function lineAt(t) { let i = 0; while (i < NL - 1 && t >= LN[i + 1].t0 - .15) i+
 function frameRef(t) {                                         // which file holds the presenter at time t (null: the stand-in)
   const i = lineAt(t), c = AROLL[i];
   if (!c) return null;
+  // holds its first frame before it starts and its last after (clips end on the last word; reversed frames would mouth silence)
   const k = clamp(Math.floor((t - c.start) * c.fps + 1e-6), 0, c.n - 1);
   return `${c.dir}/${String(k + 1).padStart(4, '0')}.jpg`;
 }

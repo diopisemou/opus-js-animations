@@ -9,6 +9,7 @@ It is never printed or written.
   el_flows.py tts    <out.mp3> --voice Liam --text "..." [--stability .4 --style .3]
   el_flows.py lipsync <out.mp4> --image face.png --audio line.mp3 [--res 720p]
   el_flows.py video  <out.mp4> --model veo-3.1-fast-generate-001 --prompt "..." [--start face.png] [--dur 8] [--ar 9:16]
+  el_flows.py upload <file> [--name "..."]   put a local file in the workspace's asset library (prints its asset_id), e.g. for a Flows node
 Every generation is logged (model, id, credits used) to el_flows.log.jsonl next to the output.
 """
 import argparse, base64, json, mimetypes, os, sys, time, urllib.error, urllib.request
@@ -73,6 +74,22 @@ def log(out, **kw):
     with open(Path(out).parent / 'el_flows.log.jsonl', 'a') as f: f.write(json.dumps({'out': str(out), **kw}) + '\n')
 
 
+def upload(path, name=None):
+    import uuid
+    b = uuid.uuid4().hex; path = Path(path)
+    mime = mimetypes.guess_type(str(path))[0] or 'application/octet-stream'
+    mime = {'audio/x-wav': 'audio/wav', 'audio/wave': 'audio/wav'}.get(mime, mime)
+    body = (f'--{b}\r\nContent-Disposition: form-data; name="name"\r\n\r\n{name or path.name}\r\n'
+            f'--{b}\r\nContent-Disposition: form-data; name="asset"; filename="{path.name}"\r\nContent-Type: {mime}\r\n\r\n').encode() \
+        + path.read_bytes() + f'\r\n--{b}--\r\n'.encode()
+    req = urllib.request.Request(API + '/v1/assets', data=body, method='POST',
+                                 headers={'xi-api-key': key(), 'Content-Type': f'multipart/form-data; boundary={b}'})
+    try:
+        with urllib.request.urlopen(req, timeout=300) as r: return json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        sys.exit(f'POST /v1/assets → HTTP {e.code}: {e.read()[:600].decode("utf8", "replace")}')
+
+
 def voice_id(name):
     vs = call('GET', '/v1/voices')['voices']
     for v in vs:
@@ -82,17 +99,19 @@ def voice_id(name):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument('cmd', choices=['credits', 'image', 'tts', 'lipsync', 'video'])
+    ap.add_argument('cmd', choices=['credits', 'image', 'tts', 'lipsync', 'video', 'upload'])
     ap.add_argument('out', nargs='?')
     ap.add_argument('--model'); ap.add_argument('--prompt'); ap.add_argument('--negative')
     ap.add_argument('--ar', default='9:16'); ap.add_argument('--res'); ap.add_argument('--dur', type=int)
     ap.add_argument('--ref', nargs='*', default=[]); ap.add_argument('--start'); ap.add_argument('--seed', type=int)
     ap.add_argument('--image'); ap.add_argument('--audio'); ap.add_argument('--no-audio', action='store_true')
     ap.add_argument('--voice', default='Liam'); ap.add_argument('--text'); ap.add_argument('--tts-model', default='eleven_multilingual_v2')
-    ap.add_argument('--stability', type=float, default=.4); ap.add_argument('--style', type=float, default=.3)
+    ap.add_argument('--name'); ap.add_argument('--stability', type=float, default=.4); ap.add_argument('--style', type=float, default=.3)
     a = ap.parse_args()
     if a.cmd == 'credits':
         u, lim = credits(); print(f'{u} / {lim} credits used this period'); return
+    if a.cmd == 'upload':
+        r = upload(a.out, a.name); print(json.dumps({k: r.get(k) for k in ('asset_id', 'name', 'mime_type', 'size_bytes') if k in r} or r)); return
     Path(a.out).parent.mkdir(parents=True, exist_ok=True)
     if a.cmd == 'image':
         b = {'model_id': a.model or 'gemini-3.1-flash-image', 'prompt': a.prompt, 'aspect_ratio': a.ar}
