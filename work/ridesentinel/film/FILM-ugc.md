@@ -114,6 +114,26 @@ Condensed): white captions with a dark outline, the spoken word in amber.
 - **The restricted MCP has no image or video nodes.** The presenter still needs the image and video endpoints: the API on a Pro plan,
   or the full ElevenLabs connector (`https://api.elevenlabs.io/v1/mcp`, added as a custom connector), whose Flows include Avatars.
 
+## English, made through the ElevenLabs MCP (full connector), on the Creator plan
+The REST image, video and asset endpoints need Pro; the full ElevenLabs MCP connector runs the same models on your current plan.
+- **Flow:** "RideSentinel UGC: presenter (EN/FR/AR)" in the ElevenLabs workspace.
+- **Presenter:** Seedream 5 Pro, 9:16 at 2K, 2 variants (1,636 credits). A was chosen (calmer, lips closed) and pinned as an asset node.
+- **Speech:** each line voiced in the flow with "Bachir Avatar" (Multilingual v2), about 50–110 credits per line. The MCP can't take local
+  files, so the flow's takes replace the earlier REST takes; those are kept in `source/ugc-en/orig/`.
+- **Lip-sync:** Creatify Aurora at 720p, 8 clips, 704×1280 at 25 fps, 32.0 s in all, about 28,000 credits (~$5.10). One 3 s clip
+  was priced and checked first (3,393 credits).
+  - Compared on the same line: OmniHuman 1.5 (720p) 2,927 credits; HeyGen Avatar 4 (1080p) 2,424 credits.
+- **Assembly:** `../tools/ugc_from_clips.py en` turns the clips into:
+  - the voice track (each clip's own audio, 0.3 s apart);
+  - the word timings: ElevenLabs forced alignment against the script, every word aligned, loss 0.58–0.83;
+  - the frames and the A-roll manifest.
+  A clip holds its last frame between lines and under the end card (reversed frames would mouth silence).
+- **Checked:**
+  - a Scribe transcript of the new voice track matches the script;
+  - `verify.mjs` is pure at 9 times;
+  - contact sheet of the whole ad.
+- **FR and AR:** the same steps with "Bachir Voice FR" and "Bachir AR", about 40,000 and 46,000 credits at Aurora's rate. Not made yet.
+
 ## To finish (needs ElevenLabs Pro)
 1. Upgrade the ElevenLabs account to Pro; the same key keeps working.
 2. From `work/ridesentinel`: `./finish-ugc.sh probe` makes the portrait and the English hook clip and prints the credits it used.
