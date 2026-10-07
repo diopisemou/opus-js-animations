@@ -56,7 +56,8 @@ for lang in ('en', 'fr', 'ar'):
                   f'<script src="audio-ugc-{lang}.js" onerror="window.FILM_AUDIO_B64 = null"></script>')
     h = h.replace('<script src="align-en.js" onerror="window.POV_ALIGN = null"></script>',
                   f'<script src="align-ugc-{lang}.js" onerror="window.UGC_ALIGN = null"></script>\n'
-                  f'<script src="aroll-{lang}.js" onerror="window.UGC_AROLL = null"></script>')
+                  f'<script src="aroll-{lang}.js" onerror="window.UGC_AROLL = null"></script>\n'
+                  '<script src="amb-ugc.js" onerror="window.FILM_AMB_B64 = null"></script>')
     h = h.replace('<script src="pov.js"></script>', '<script src="ugc.js"></script>')
     assert f'ugc-{lang}.js' in h and 'ugc.js' in h and f'aroll-{lang}.js' in h
     Path(f'ugc-{lang}.html').write_text(h)

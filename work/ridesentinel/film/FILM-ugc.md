@@ -105,6 +105,15 @@ Condensed): white captions with a dark outline, the spoken word in amber.
   - `verify.mjs` is pure at 9 times in EN, including with a synthetic A-roll clip (the frame path, then removed);
   - contact sheets for EN and AR (right-to-left captions, the AI tag on the right).
 
+- **Room tone, made with the ElevenLabs MCP:**
+  - the connected ElevenLabs MCP (the restricted connector) made a car-cabin room tone at night: Sound Effects v2, 20 s, seamless
+    loop, 2 takes for 133 credits;
+  - take 2 was kept (−51 LUFS, 2.6 LU range, no spikes); take 1 was near silence;
+  - it plays under everything, never ducked, about 21 dB under the voice, as a phone microphone would hear it;
+  - it is in `amb-ugc.js`, generated and not committed; the source is `ugc/sfx/cabin-2.mp3`, and the flow is in the ElevenLabs workspace.
+- **The restricted MCP has no image or video nodes.** The presenter still needs the image and video endpoints: the API on a Pro plan,
+  or the full ElevenLabs connector (`https://api.elevenlabs.io/v1/mcp`, added as a custom connector), whose Flows include Avatars.
+
 ## To finish (needs ElevenLabs Pro)
 1. Upgrade the ElevenLabs account to Pro; the same key keeps working.
 2. From `work/ridesentinel`: `./finish-ugc.sh probe` makes the portrait and the English hook clip and prints the credits it used.

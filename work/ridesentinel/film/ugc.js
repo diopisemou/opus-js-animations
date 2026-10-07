@@ -721,6 +721,15 @@ async function renderMix(sr = 48000) {
     const vg = ac.createGain(); vg.gain.value = 1.15; src.connect(vg).connect(master); src.start(0);
   }
   LN.forEach(l => { duck.gain.setTargetAtTime(.3, Math.max(0, l.t0 - .08), .05); duck.gain.setTargetAtTime(.75, l.t1 + .05, .2); });
+  // the phone's own microphone: car-cabin room tone (ElevenLabs Sound Effects, a seamless 20 s loop), under everything, never ducked
+  if (window.FILM_AMB_B64) {
+    const bytes = Uint8Array.from(atob(window.FILM_AMB_B64), c => c.charCodeAt(0)), amb = await ac.decodeAudioData(bytes.buffer);
+    const src = ac.createBufferSource(); src.buffer = amb; src.loop = true;
+    const g = ac.createGain(); g.gain.setValueAtTime(0, 0); g.gain.linearRampToValueAtTime(2.05, .25);   // the −51 LUFS take, lifted to ~21 dB under the voice
+    g.gain.setValueAtTime(2.05, TL.end); g.gain.linearRampToValueAtTime(.8, TL.end + .8);
+    const hp = ac.createBiquadFilter(); hp.type = 'highpass'; hp.frequency.value = 45;
+    src.connect(hp).connect(g).connect(master); src.start(0); src.stop(DURATION);
+  }
   // a 100 BPM lo-fi loop: soft kick, rim on 2 and 4, swung hats, warm chords, a round bass
   const BEAT = .6, CH = [[110, [220, 277.18, 329.63, 415.3]], [92.5, [185, 233.08, 277.18, 369.99]], [123.47, [246.94, 293.66, 369.99, 440]], [82.41, [164.81, 207.65, 246.94, 329.63]]];
   for (let b = 0; b * 4 * BEAT < TL.end; b++) {
