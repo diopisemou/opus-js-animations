@@ -1,0 +1,24 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 daily.py:*)",
+      "Bash(python3 ../tools/*)",
+      "Bash(node ../tools/*)",
+      "Bash(ffmpeg:*)",
+      "Bash(ffprobe:*)",
+      "Bash(uv sync)",
+      "Bash(uv run shorts:*)",
+      "Bash(npm install -g postiz)",
+      "Bash(postiz:*)",
+      "Bash(git fetch:*)",
+      "Bash(git pull:*)",
+      "Bash(git checkout:*)",
+      "Bash(git worktree:*)",
+      "Bash(git clone:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push -u origin ridesentinel-videos)",
+      "Bash(git push origin ridesentinel-videos)"
+    ]
+  }
+}

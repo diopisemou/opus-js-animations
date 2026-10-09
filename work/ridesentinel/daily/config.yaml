@@ -1,0 +1,39 @@
+# RideSentinel daily content. Secrets come from the environment (ELEVENLABS_API_KEY, POSTIZ_API_KEY), never from here.
+brief: >
+  Daily 20–40 second shorts for rideshare and delivery drivers (Uber, Lyft and similar apps), mostly in Montreal and other
+  North American cities. Each video teaches drivers to judge an offer by its real hourly rate: the pickup and the empty drive
+  back cost time, a big fare can pay little, a small fare can be great. RideSentinel is an Android app in development that
+  reads the offer and shows that rate in one second; early access at ridesentinel.app. Tone: a driver talking to drivers,
+  plain words, no hype.
+rules:
+  - "Every offer is an EXAMPLE (the video says so on screen). Never claim real earnings, never invent statistics or studies."
+  - "Numbers on screen and in the voice come from `daily.py calc`; never type a different figure."
+  - "Never show or name a platform's logo or UI; say 'the app' or 'the offer', not a brand's screen."
+  - "Safety: decisions happen stopped or parked; never suggest touching the phone while driving."
+  - "Never advise drivers to break platform rules (acceptance-rate tricks, fake cancels). Respect that each driver sets their own bar."
+  - "RideSentinel is in development (Android, early access). Do not promise features, prices or dates."
+  - "Voice is the founder's AI voice clone; the on-screen tag and the caption disclose it."
+default_bar: 40
+max_words: 95
+min_seconds: 15
+max_seconds: 58
+voices:          # the founder's cloned voices (ElevenLabs voice ids)
+  en: { name: PHt8GGNQuTMNZC35u77q, id: PHt8GGNQuTMNZC35u77q, stability: .45, style: .3, speed: 1.05 }
+  fr: { name: gRIFl3AVl3FYtGRWK4Ck, id: gRIFl3AVl3FYtGRWK4Ck, stability: .45, style: .3, speed: 1.1 }
+cta:
+  en: "RideSentinel does this math in one second. Early access: ridesentinel dot app."
+  fr: "RideSentinel fait ce calcul en une seconde. Accès anticipé : ridesentinel point app."
+link_line:
+  en: "Early access (Android): https://ridesentinel.app"
+  fr: "Accès anticipé (Android) : https://ridesentinel.app"
+disclosure:
+  en: "Example offer. Voice: AI clone of the founder. Independent project, not affiliated with Uber or Lyft."
+  fr: "Offre d’exemple. Voix : clone IA du fondateur. Projet indépendant, non affilié à Uber ni Lyft."
+hashtags_base: [rideshare, uberdriver, gigeconomy, ridesentinel]
+# Postiz integrations (postiz integrations:list): the RideSentinel accounts only. YouTube is not used (the YouTube token in this
+# environment belongs to the Bidew Builds channel).
+postiz_integrations:
+  - cmv17qe510dh4qz0yck8z7qwv   # TikTok @ridesentinel
+  - cmv18ns170e5bmq0yvaa58qif   # Instagram @ridesentinel
+  - cmv182fku0dtdmq0y637pwdj4   # Facebook RideSentinel
+delay_minutes: 3

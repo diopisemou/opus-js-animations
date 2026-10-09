@@ -1,0 +1,120 @@
+# shorts-pipeline config for RideSentinel driver tips (en). Used with `uv run shorts --config <this file> ...`.
+# NEVER run `shorts publish` with it: that uploads to the YouTube channel of the token in the environment (Bidew Builds).
+# Publishing goes through `daily.py publish-tip` (Postiz, RideSentinel accounts only).
+channel:
+  name: RideSentinel
+  brief: 'Daily 30–50 second tips for rideshare and delivery drivers (Uber, Lyft and similar apps), mostly in Montreal and North America. Each short teaches ONE concrete, usable idea to earn more per hour
+    or waste less: count the pickup and the drive back, know your own minimum $/hour, dead zones, airport queues, surge math, EV charging time, fuel and wear per km, taxes and mileage records, rest and
+    safety. Plain words, a driver talking to drivers, no hype, no invented statistics; when you need a number, make it an obvious worked example. Never advise breaking platform rules, never suggest touching
+    the phone while driving, never show a platform''s logo or UI.'
+  audience: rideshare and delivery drivers
+  language: en
+  cta: Follow for one driver tip a day.
+  disclosure: 'Voice: AI clone of the founder of RideSentinel. Independent project, not affiliated with Uber or Lyft.'
+video:
+  width: 1080
+  height: 1920
+  fps: 30
+  max_seconds: 58
+  min_seconds: 15
+  caption_band:
+    top: 1400
+    bottom: 1560
+  safe_top: 200
+  grammars:
+  - y5_kinetic_type
+  - y3_whiteboard
+  - t1_3b1b
+  - y1_kurzgesagt
+  - t2_keynote_ui
+  - t3_finance_chart
+  default_grammar: y5_kinetic_type
+  crf: 18
+  music: ''
+  music_gain_db: -22
+  voice_lead_s: 0.4
+  tail_s: 0.9
+captions:
+  enabled: true
+  font: DejaVu Sans
+  fonts_dir: ''
+  size: 76
+  max_chars_per_page: 22
+  uppercase: false
+  color: '#FFFFFF'
+  active_color: '#FFC83C'
+  outline: 5
+  big_size: 96
+voice:
+  provider: auto
+  elevenlabs:
+    model_id: eleven_multilingual_v2
+    voice_id: PHt8GGNQuTMNZC35u77q
+    stability: 0.45
+    similarity_boost: 0.75
+    speed: 1.05
+  edge:
+    voice: en-US-AndrewMultilingualNeural
+    rate: +5%
+    voices_by_language:
+      en: en-US-AndrewMultilingualNeural
+      fr: fr-FR-RemyMultilingualNeural
+      zh: zh-CN-XiaoxiaoNeural
+      ar: ar-TN-HediNeural
+      pt: pt-BR-AntonioNeural
+      es: es-ES-AlvaroNeural
+      de: de-DE-FlorianMultilingualNeural
+  stt_check: auto
+publish:
+  privacy: private
+  category_id: '28'
+  title_suffix: ' #Shorts'
+  tags_base:
+  - rideshare
+  - uberdriver
+  - gigeconomy
+  - ridesentinel
+  made_for_kids: false
+  publish_at: ''
+  notify_subscribers: true
+monetize:
+  lead_line: 'Early access (Android): https://ridesentinel.app'
+  default_link: https://ridesentinel.app
+  links: []
+  end_card: true
+  end_card_sub: ridesentinel.app
+  pinned_comment: '{lead_line}{link_line}What should drivers learn next? Tell me below.'
+  affiliate_disclosure: ''
+crosspost:
+  enabled: auto
+  integrations:
+  - cmv17qe510dh4qz0yck8z7qwv
+  - cmv18ns170e5bmq0yvaa58qif
+  - cmv182fku0dtdmq0y637pwdj4
+  providers:
+  - tiktok
+  - instagram
+  - facebook
+  - threads
+  - linkedin
+  caption_max: 2000
+  delay_minutes: 3
+formats:
+  weights:
+    list: 1.0
+    hook_broll: 1.0
+    explainer: 1.3
+    keynote: 0.6
+    data: 0.0
+  no_repeat_days: 1
+  broll:
+    styles: []
+    max_segment_s: 7
+    end_card_s: 2.5
+llm:
+  model: claude-opus-5-5
+  effort: high
+  max_words: 125
+topics:
+  autofill: false
+  batch: 7

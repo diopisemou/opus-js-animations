@@ -1,0 +1,23 @@
+{
+  "topic": "Les 3 chiffres à vérifier sur chaque offre avant d’accepter",
+  "language": "fr",
+  "format": "hook_broll",
+  "grammar": "y5_kinetic_type",
+  "title": "Les 3 chiffres à vérifier avant d’accepter une course",
+  "description": "Avant d’accepter une offre, trois chiffres : le temps total (approche, course et retour à vide), le vrai taux horaire, et votre propre seuil. Exemple : 18,40 $ pour 63 minutes, c’est environ 18 $ de l’heure.",
+  "tags": ["vtc", "chauffeur", "astuce", "montreal"],
+  "data": {},
+  "cues": [
+    {"kind": "title", "text": "3 chiffres avant d'accepter", "sub": "chaque offre, chaque fois",
+     "narration": "Avant d’accepter une course, regardez trois chiffres, pas un seul."},
+    {"kind": "broll", "style": "24_hopper", "text": "1. Le temps total",
+     "narration": "Un : le temps total. L’approche, la course, puis le retour à vide. Pas seulement la course."},
+    {"kind": "broll", "style": "12_bauhaus", "text": "2. Le vrai taux horaire",
+     "narration": "Deux : le vrai taux horaire. Le prix divisé par ce temps total. Dix-huit quarante pour soixante-trois minutes, c’est environ dix-huit dollars de l’heure."},
+    {"kind": "broll", "style": "17_ink", "text": "3. Votre seuil",
+     "narration": "Trois : votre seuil. Le taux sous lequel vous refusez. Fixez-le avant de partir, pas en roulant."},
+    {"kind": "broll", "style": "35_shinkai", "text": "Comparez, puis décidez",
+     "narration": "Si le vrai taux passe sous votre seuil, vous passez. Sinon, vous prenez."}
+  ],
+  "outro": "Abonnez-vous pour une astuce de chauffeur par jour."
+}

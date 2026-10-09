@@ -1,0 +1,120 @@
+# shorts-pipeline config for RideSentinel driver tips (fr). Used with `uv run shorts --config <this file> ...`.
+# NEVER run `shorts publish` with it: that uploads to the YouTube channel of the token in the environment (Bidew Builds).
+# Publishing goes through `daily.py publish-tip` (Postiz, RideSentinel accounts only).
+channel:
+  name: RideSentinel
+  brief: 'Astuces quotidiennes de 30 à 50 secondes pour les chauffeurs VTC et livreurs (Uber, Lyft et autres), surtout à Montréal. Chaque vidéo enseigne UNE idée concrète pour gagner plus à l’heure ou perdre
+    moins : compter l’approche et le retour à vide, connaître son propre seuil en $/h, zones mortes, file d’attente à l’aéroport, calcul du surge, temps de recharge d’un VÉ, essence et usure au km, impôts
+    et registre de kilométrage, repos et sécurité. Mots simples, un chauffeur qui parle aux chauffeurs, pas d’exagération, aucune statistique inventée ; un chiffre doit être un exemple évident. Ne jamais
+    conseiller d’enfreindre les règles d’une plateforme, ni de toucher au téléphone en conduisant, ni montrer le logo ou l’écran d’une plateforme.'
+  audience: chauffeurs VTC et livreurs
+  language: fr
+  cta: Abonnez-vous pour une astuce de chauffeur par jour.
+  disclosure: 'Voix : clone IA du fondateur de RideSentinel. Projet indépendant, non affilié à Uber ni Lyft.'
+video:
+  width: 1080
+  height: 1920
+  fps: 30
+  max_seconds: 58
+  min_seconds: 15
+  caption_band:
+    top: 1400
+    bottom: 1560
+  safe_top: 200
+  grammars:
+  - y5_kinetic_type
+  - y3_whiteboard
+  - t1_3b1b
+  - y1_kurzgesagt
+  - t2_keynote_ui
+  - t3_finance_chart
+  default_grammar: y5_kinetic_type
+  crf: 18
+  music: ''
+  music_gain_db: -22
+  voice_lead_s: 0.4
+  tail_s: 0.9
+captions:
+  enabled: true
+  font: DejaVu Sans
+  fonts_dir: ''
+  size: 76
+  max_chars_per_page: 22
+  uppercase: false
+  color: '#FFFFFF'
+  active_color: '#FFC83C'
+  outline: 5
+  big_size: 96
+voice:
+  provider: auto
+  elevenlabs:
+    model_id: eleven_multilingual_v2
+    voice_id: gRIFl3AVl3FYtGRWK4Ck
+    stability: 0.45
+    similarity_boost: 0.75
+    speed: 1.1
+  edge:
+    voice: en-US-AndrewMultilingualNeural
+    rate: +5%
+    voices_by_language:
+      en: en-US-AndrewMultilingualNeural
+      fr: fr-FR-RemyMultilingualNeural
+      zh: zh-CN-XiaoxiaoNeural
+      ar: ar-TN-HediNeural
+      pt: pt-BR-AntonioNeural
+      es: es-ES-AlvaroNeural
+      de: de-DE-FlorianMultilingualNeural
+  stt_check: auto
+publish:
+  privacy: private
+  category_id: '28'
+  title_suffix: ' #Shorts'
+  tags_base:
+  - vtc
+  - chauffeur
+  - montreal
+  - ridesentinel
+  made_for_kids: false
+  publish_at: ''
+  notify_subscribers: true
+monetize:
+  lead_line: 'Accès anticipé (Android) : https://ridesentinel.app'
+  default_link: https://ridesentinel.app
+  links: []
+  end_card: true
+  end_card_sub: ridesentinel.app
+  pinned_comment: '{lead_line}{link_line}Quelle astuce voulez-vous ensuite ? Dites-le en commentaire.'
+  affiliate_disclosure: ''
+crosspost:
+  enabled: auto
+  integrations:
+  - cmv17qe510dh4qz0yck8z7qwv
+  - cmv18ns170e5bmq0yvaa58qif
+  - cmv182fku0dtdmq0y637pwdj4
+  providers:
+  - tiktok
+  - instagram
+  - facebook
+  - threads
+  - linkedin
+  caption_max: 2000
+  delay_minutes: 3
+formats:
+  weights:
+    list: 1.0
+    hook_broll: 1.0
+    explainer: 1.3
+    keynote: 0.6
+    data: 0.0
+  no_repeat_days: 1
+  broll:
+    styles: []
+    max_segment_s: 7
+    end_card_s: 2.5
+llm:
+  model: claude-opus-5-5
+  effort: high
+  max_words: 125
+topics:
+  autofill: false
+  batch: 7

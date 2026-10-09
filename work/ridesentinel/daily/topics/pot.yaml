@@ -1,0 +1,8 @@
+# Pass-or-Take scenario seeds; daily.py record pops the first.
+- 'Short 9-minute hop downtown at rush hour for $11, 2 min pickup, next ride likely right there (small fare, great rate: TAKE)'
+- Airport run at 5 a.m., $52 for 35 min, but a 20 min pickup and a long airport queue or empty return
+- '$27 surge ride, 14 min pickup across the bridge, 16 min trip: is the surge eaten by the pickup?'
+- 'EV at 22% battery offered a $46 trip far out of town: the charging stop counts as time'
+- 'Two offers back to back: $15 for 12 min nearby vs $24 for 35 min with a 10 min pickup'
+- Late-night bar close, $13 for 8 min, 3 min pickup, busy zone (TAKE)
+- '$34 trip that ends in a dead zone with no demand: count 20 minutes back'

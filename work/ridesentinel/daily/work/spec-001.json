@@ -1,0 +1,35 @@
+{
+ "lang": "en",
+ "slug": "far-suburbs-trap",
+ "setting": {
+  "time": "2:04 AM",
+  "place": "Downtown"
+ },
+ "offer": {
+  "fare": 18.4,
+  "pickup_min": 7,
+  "pickup_km": 2.9,
+  "trip_min": 31,
+  "trip_km": 22.4,
+  "drop_label": "Far suburbs",
+  "back_min": 25,
+  "back_km": 20
+ },
+ "bar": 40,
+ "lines": [
+  "Two a.m., downtown. This offer just popped up. Would you take it?",
+  "Eighteen forty. Seven minutes to the pickup, then a thirty-one minute trip to the far suburbs.",
+  "Now add the pickup and the twenty-five minute drive back, empty. That's sixty-three minutes of your night.",
+  "Eighteen forty for sixty-three minutes is about eighteen dollars an hour. Your bar is forty. Pass.",
+  "The trip time lies. Count the pickup and the drive back, every time.",
+  "RideSentinel does this math in one second. Early access: ridesentinel dot app."
+ ],
+ "lesson_text": "Trip time lies. Count the drive back.",
+ "title": "Would you take $18.40 at 2 a.m.? | Pass or Take #1",
+ "caption": "It looks like $36 an hour. Count the pickup and the empty drive back and it is really about $18.",
+ "hashtags": [
+  "passortake",
+  "drivertips",
+  "montreal"
+ ]
+}
