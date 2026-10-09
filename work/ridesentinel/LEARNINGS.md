@@ -216,6 +216,33 @@ or `pov.js`; `build-ugc.py` is the only scripted assembler.
 
 ---
 
+## 7b. The daily pipeline (`daily/`)
+
+- **Shape:** one short a day, rotating Pass or Take EN, tip FR, Pass or Take FR, tip EN, indexed by `len(history)`, so a
+  failed day never advances the cycle. `daily.py next` prints the brief, rules and template; the session writes the spec or
+  plan; code computes every figure (`calc`).
+- **Layout on a 1080×1920 frame:** card 280–650 after it moves up, time bars ~740, total ~870, trip-only ~965, dial centre
+  1340 (r 220) with the readout *under* the hub, so the needle never crosses it. Captions sit at ~1570–1710. Lesson text
+  goes at ~980, below the card.
+- **Hold the verdict:** the lesson line follows "Pass." immediately, so the stamp lasted 0.5 s. Delay the lesson visual
+  to verdict + 1.5 s (`TL.lesson`).
+- **Contact sheets miss short beats:** also pull 3 frames around the verdict from `final.mp4`.
+- **Scribe varies:** the same audio scored 0.9 and then 0.8 on the script match. Keep the threshold at 0.6.
+- **Postiz:** `posts:create` prints `[{postId, integration}]`; `posts:list --startDate --endDate` gives the `state`
+  (`QUEUE` → `PUBLISHED`/`ERROR`) and `releaseURL`. TikTok's URL is the profile, Instagram and Facebook give the reel.
+  Posts scheduled 3 min out were PUBLISHED about 1 min after their time. `publish` refuses a second run (no duplicates);
+  `--only <provider>` re-posts to one failed account.
+- **shorts-pipeline:** the engine is the root of the huashu-art-motion repo (`HUASHU_DIR`, which needs
+  `scripts/engine/render.py`). The `ELEVENLABS_VOICE_ID` in the environment is another voice, so always pass
+  RideSentinel's. A curly apostrophe in on-screen text splits the title card ("d’ accepter").
+- **Scheduling:** a dedicated session on the branch (auto mode) and a Routine bound to it
+  (`CRON_TZ=America/Toronto 52 16 * * *`). The procedure lives in `daily/ROUTINE.md`, so it can be edited without
+  touching the Routine. A "published today?" guard stops double posts.
+- **Cost per day:** about 500–900 TTS characters plus one Scribe pass, roughly 1k credits. Renders take 10–15 min for
+  Pass or Take and about 6 min for a tip.
+
+---
+
 ## 8. Open items
 
 - **UGC FR and AR:** the scripts are voiced and the film is built; the clips are not made (~40k and ~46k credits with Aurora, or ~30%
