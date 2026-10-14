@@ -1,5 +1,4 @@
-# Topic queue. `shorts build --record` pops the first entry.
-- Les 3 chiffres à vérifier sur chaque offre avant d’accepter
+# Topic queue. `shorts run` pops the first entry; `shorts topics --fill` asks Claude for more.
 - 'Votre seuil en dollars de l’heure : comment le fixer en une soirée'
 - Pourquoi le retour à vide coûte le plus cher sur une longue course
 - 'L’aéroport : quand la file vaut le coup, et quand elle ne le vaut pas'
