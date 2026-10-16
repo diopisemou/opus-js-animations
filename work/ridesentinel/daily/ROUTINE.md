@@ -14,6 +14,7 @@ accounts only (the three Postiz ids in `config.yaml`). Nothing else is published
 # a fresh container may have no checkout: attach diopisemou/opus-js-animations (add_repo, push access) and clone it
 git clone --branch ridesentinel-videos https://github.com/diopisemou/opus-js-animations <home>/opus-js-animations
 cd <home>/opus-js-animations   # or, if it exists: git fetch origin ridesentinel-videos && git checkout ridesentinel-videos && git pull --ff-only
+git checkout -B ridesentinel-videos HEAD   # a fresh container checks the branch out as a detached HEAD; push needs the branch
 cd work/ridesentinel/daily
 python3 -c "import yaml" || pip install pyyaml
 which postiz || npm install -g postiz
