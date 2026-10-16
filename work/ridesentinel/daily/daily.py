@@ -42,6 +42,11 @@ def history():
 # ─── next ────────────────────────────────────────────────────────────────
 def cmd_next(a):
     h = history()
+    if h:
+        age = (dt.datetime.now(dt.timezone.utc) - dt.datetime.fromisoformat(h[-1]['date'])).total_seconds() / 3600
+        if age < 14:
+            print(f"STOP: last post {age:.1f} h ago ({h[-1]['title']}); one video per day, skip this run.\n")
+    h = history()
     series, lang = CYCLE[len(h) % len(CYCLE)]
     if a.series: series = a.series
     if a.lang: lang = a.lang

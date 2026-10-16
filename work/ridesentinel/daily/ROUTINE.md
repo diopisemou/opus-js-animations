@@ -15,7 +15,8 @@ cd work/ridesentinel/daily
 python3 daily.py next
 ```
 - `next` prints today's series and language, the brief, the rules, recent titles, and the template to fill.
-- Already published today (a `state/history.json` entry dated today, UTC)? Stop; say so in one line.
+- `next` prints `STOP: last post ... h ago` when the last recorded post is under 14 hours old (a run that finished
+  late). Stop then; say so in one line. Otherwise make today's video, even if a late run already posted on this date.
 - ElevenLabs: `python3 daily.py credits` must show at least 5,000 characters left, or stop and report.
 - Keys come from the environment (`ELEVENLABS_API_KEY`, `POSTIZ_API_KEY`). Never print them, never write them to a file.
 
