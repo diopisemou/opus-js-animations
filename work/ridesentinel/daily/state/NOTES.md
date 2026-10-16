@@ -23,6 +23,7 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
   A fresh container lacks the `postiz` CLI: the `npm install -g postiz` step in setup is needed (worked).
   The checkout starts on a detached HEAD with a stale local `ridesentinel-videos`: before committing run
   `git checkout -B ridesentinel-videos HEAD` (HEAD is the pulled tip), or the push sends the old ref and is rejected.
+- 2026-10-16 20:54 UTC: another launch hit STOP (pot fr #2 posted 5 h earlier); stats refreshed, nothing built. Next is tip en.
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).
