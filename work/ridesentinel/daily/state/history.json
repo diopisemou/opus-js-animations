@@ -6,11 +6,22 @@
   "title": "Would you take $18.40 at 2 a.m.? | Pass or Take #1",
   "dir": "2026-10-09-far-suburbs-trap",
   "posted": [
-   "tiktok",
+   "facebook",
    "instagram",
-   "facebook"
+   "tiktok"
   ],
-  "failed": []
+  "failed": [],
+  "posts": {
+   "tiktok": [
+    "cmv1aeb7g0f6eqz0yhwk25fqc"
+   ],
+   "facebook": [
+    "cmv1aeecp0f6gqz0y9opvsc0l"
+   ],
+   "instagram": [
+    "cmv1aecb70f9qmq0y1jjw9enl"
+   ]
+  }
  },
  {
   "date": "2026-10-14T06:26:23+00:00",
@@ -19,12 +30,22 @@
   "title": "Les 3 chiffres à vérifier avant d’accepter une course",
   "dir": "2026-10-14-les-3-chiffres-a-verifier-avant-daccepter-une-co",
   "posted": [
-   "tiktok",
-   "facebook"
+   "facebook",
+   "instagram",
+   "tiktok"
   ],
-  "failed": [
-   "instagram"
-  ]
+  "failed": [],
+  "posts": {
+   "instagram": [
+    "cmv7q179u1nizle0ysnoz2e1x"
+   ],
+   "tiktok": [
+    "cmv7q16ir1nixle0yu3l46igt"
+   ],
+   "facebook": [
+    "cmv7q1a7n1nj1le0ygspie5r8"
+   ]
+  }
  },
  {
   "date": "2026-10-16T15:56:59+00:00",
@@ -33,11 +54,21 @@
   "title": "11 $ pour 9 minutes : vous la prenez ? | Passez ou prenez #2",
   "dir": "2026-10-16-petite-course-centre-ville",
   "posted": [
-   "tiktok",
-   "facebook"
+   "facebook",
+   "instagram",
+   "tiktok"
   ],
-  "failed": [
-   "instagram"
-  ]
+  "failed": [],
+  "posts": {
+   "tiktok": [
+    "cmvb5b0br0qx6lu0yhsgcygee"
+   ],
+   "facebook": [
+    "cmvb5b33g0qwuo00y1rnwq9t9"
+   ],
+   "instagram": [
+    "cmvb5b1zx0qx8lu0ykjvmr0cz"
+   ]
+  }
  }
 ]

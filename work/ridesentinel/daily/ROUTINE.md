@@ -1,20 +1,28 @@
 # The daily run (what the scheduled session does)
 
-The daily Routine wakes a dedicated session with: "Daily RideSentinel short: follow
-work/ridesentinel/daily/ROUTINE.md on branch ridesentinel-videos." This file is the procedure; edit it here, not in
-the Routine.
+A daily Routine starts a **fresh session** that follows this file (edit it here, not in the Routine). The session
+knows nothing about earlier days except what is committed on branch `ridesentinel-videos`:
+- `state/NOTES.md`: the memory (lessons, incidents, what works). Read it first; update it last.
+- `state/history.json`: every video and where it went; `state/stats.json`: views per video and account.
+- `topics/pot.yaml`, `tips/<lang>/topics.yaml`: what comes next.
 
 Approved by the owner: publish automatically once QA passes, to the RideSentinel TikTok, Instagram and Facebook
 accounts only (the three Postiz ids in `config.yaml`). Nothing else is published, anywhere.
 
-## 0. Sync and pre-flight
+## 0. Set up, sync, remember
 ```sh
-cd <repo root>   # opus-js-animations
-git fetch origin ridesentinel-videos && git checkout ridesentinel-videos && git pull --ff-only origin ridesentinel-videos
+# a fresh container may have no checkout: attach diopisemou/opus-js-animations (add_repo, push access) and clone it
+git clone --branch ridesentinel-videos https://github.com/diopisemou/opus-js-animations <home>/opus-js-animations
+cd <home>/opus-js-animations   # or, if it exists: git fetch origin ridesentinel-videos && git checkout ridesentinel-videos && git pull --ff-only
 cd work/ridesentinel/daily
+python3 -c "import yaml" || pip install pyyaml
+which postiz || npm install -g postiz
+python3 daily.py stats       # refresh views per video (and the real post states) before deciding anything
+python3 daily.py requeue     # posts left in ERROR by an account that was down: re-queued once
 python3 daily.py next
 ```
-- `next` prints today's series and language, the brief, the rules, recent titles, and the template to fill.
+- `next` prints the memory (NOTES.md), what works (top and bottom videos by views), today's series and language, the
+  brief, the rules, recent titles, and the template to fill. Let what works shape the hook and the angle.
 - `next` prints `STOP: last post ... h ago` when the last recorded post is under 14 hours old (a run that finished
   late). Stop then; say so in one line. Otherwise make today's video, even if a late run already posted on this date.
 - ElevenLabs: `python3 daily.py credits` must show at least 5,000 characters left, or stop and report.
@@ -63,13 +71,17 @@ env -u YT_TOKEN_JSON ELEVENLABS_VOICE_ID=$VOICE uv run shorts --config $T/config
 
 ## 2. After publishing
 - `status` shows each post's state. A post in ERROR: report it; do **not** publish again to the accounts that
-  worked (that makes duplicates). Re-posting to only the failed account is fine once, with `--only <provider>`.
+  worked (that makes duplicates). Tomorrow's `requeue` retries it once; if it fails again, say in NOTES.md and in
+  your reply that the owner must reconnect that account in Postiz.
+- Update `state/NOTES.md`: add a dated line for anything the next run must know (an incident, a fix, a scenario or
+  hook that did well or badly in `stats`); merge or drop lines that are no longer true; keep it under ~60 lines.
 - Commit the state (sources only; videos and audio never go to git):
   ```sh
-  git add -f state/history.json topics/pot.yaml tips/*/topics.yaml tips/*/state/history.json
+  git add -f state/history.json state/stats.json state/NOTES.md topics/pot.yaml tips/*/topics.yaml tips/*/state/history.json
   git commit -m "RideSentinel daily: <series> <lang> <title>"   # with the session's attribution lines
-  git push -u origin ridesentinel-videos
+  git push -u origin ridesentinel-videos   # rejected? git pull --no-rebase origin ridesentinel-videos, then push
   ```
+  Even when the run stops early (STOP, low credits, QA failed), commit what `stats`/`requeue` changed and any note.
 - Send the owner `final.mp4` (and the sheet) with one line: title, series, language, QA (length, LUFS, script match),
   and the post states.
 

@@ -10,6 +10,8 @@ TikTok, Instagram and Facebook accounts through Postiz.
   python3 daily.py status <out dir>           the state of each post (QUEUE, PUBLISHED, ERROR) and its link
   python3 daily.py record <out dir> --series pot|tip --lang en|fr   add the run to state/history.json
   python3 daily.py credits                    ElevenLabs characters left this period
+  python3 daily.py stats                      views/likes per video from Postiz -> state/stats.json (also fixes history)
+  python3 daily.py requeue [--dry-run]        re-queue posts in ERROR (an account was down), at most one per video and account
   python3 daily.py voice en|fr                the RideSentinel voice id for a language (for shorts-pipeline)
 
 Run from work/ridesentinel/daily. Keys come from the environment (ELEVENLABS_API_KEY, POSTIZ_API_KEY), never from files here.
@@ -25,6 +27,8 @@ TOOLS = HERE.parent / 'tools'
 SKILL = HERE.parent.parent.parent / 'skills' / 'opus-js-animations' / 'scripts'
 CFG = yaml.safe_load((HERE / 'config.yaml').read_text())
 HIST = HERE / 'state' / 'history.json'
+NOTES = HERE / 'state' / 'NOTES.md'        # the run-to-run memory: lessons, incidents, what works
+STATS = HERE / 'state' / 'stats.json'      # per-video numbers from Postiz analytics (`daily.py stats`)
 CYCLE = [('pot', 'en'), ('tip', 'fr'), ('pot', 'fr'), ('tip', 'en')]
 
 
@@ -47,6 +51,15 @@ def cmd_next(a):
         if age < 14:
             print(f"STOP: last post {age:.1f} h ago ({h[-1]['title']}); one video per day, skip this run.\n")
     h = history()
+    if NOTES.exists(): print('MEMORY (state/NOTES.md, read it; add a dated line when you learn something):\n' + NOTES.read_text().strip() + '\n')
+    if STATS.exists():
+        st = json.loads(STATS.read_text())
+        if st.get('videos'):
+            vs = sorted(st['videos'], key=lambda v: -v['views'])
+            print(f"WHAT WORKS (views on all accounts, updated {st['updated'][:16]}):")
+            for v in vs[:3] + ([{'title': '...', 'views': '', 'series': '', 'lang': ''}] if len(vs) > 6 else []) + vs[max(3, len(vs) - 3):]:
+                print(f"  {v['views']!s:>6}  {v['series']} {v['lang']}  {v['title'][:80]}")
+            print()
     series, lang = CYCLE[len(h) % len(CYCLE)]
     if a.series: series = a.series
     if a.lang: lang = a.lang
@@ -311,6 +324,70 @@ def cmd_publish_tip(a):
     post(out / 'final.mp4', caption_for(plan['title'], plan.get('description', ''), plan.get('tags', []), a.lang), plan['title'], out, a.dry_run, a.only)
 
 
+def our_posts(days=60):
+    """Posts on the three RideSentinel accounts over the last `days` days (and the next one), newest first."""
+    now = dt.datetime.now(dt.timezone.utc)
+    lst = pjson(postiz('posts:list', '--startDate', (now - dt.timedelta(days=days)).strftime('%Y-%m-%dT%H:%M:%SZ'),
+                       '--endDate', (now + dt.timedelta(days=1)).strftime('%Y-%m-%dT%H:%M:%SZ'))) or {}
+    ps = [p for p in (lst.get('posts', []) if isinstance(lst, dict) else lst) if (p.get('integration') or {}).get('id') in CFG['postiz_integrations']]
+    for p in ps:
+        p['provider'] = p['integration']['providerIdentifier'].split('-')[0]
+        p['title'] = (p.get('content') or '').split('\n')[0].strip()
+    return sorted(ps, key=lambda p: p['publishDate'], reverse=True)
+
+
+def cmd_requeue(a):
+    """An account that was down leaves posts in ERROR; once it is back, re-queue one of them per video and account."""
+    ps, done = our_posts(a.days), set()
+    for p in ps:
+        if p['state'] in ('PUBLISHED', 'QUEUE'): done.add((p['title'], p['provider']))
+    n = 0
+    for p in ps:                                    # newest first: the latest failed attempt is the one re-queued
+        k = (p['title'], p['provider'])
+        if p['state'] != 'ERROR' or k in done: continue
+        done.add(k); n += 1
+        print(f"{'would re-queue' if a.dry_run else 're-queue'} {p['provider']:10} {p['publishDate'][:16]}  {p['title'][:70]}")
+        if not a.dry_run: postiz('posts:status', p['id'], '--status', 'schedule')
+    print(f'{n} post(s)' + (' (dry run)' if a.dry_run else ' re-queued; check them with `daily.py stats` in a few minutes'))
+
+
+def analytics(pid):
+    out = {}
+    for m in pjson(postiz('analytics:post', pid, timeout=120)) or []:
+        tot = sum(int(float(d.get('total') or 0)) for d in (m.get('data') or [])[-1:])
+        out[m.get('label', '').lower()] = tot
+    return {'views': out.get('views', out.get('plays', 0)), 'likes': out.get('likes', out.get('reactions', 0)),
+            'comments': out.get('comments', 0), 'shares': out.get('shares', 0)}
+
+
+def cmd_stats(a):
+    """Views per video and account (Postiz analytics) -> state/stats.json; history gets each video's real post states."""
+    h, ps = history(), our_posts(a.days)
+    vids = {}
+    for e in h:
+        v = vids.setdefault(e['title'], {'title': e['title'], 'date': e['date'][:10], 'series': e['series'], 'lang': e['lang'],
+                                         'views': 0, 'accounts': {}})
+        for p in ps:
+            if p['title'] != e['title'].strip(): continue
+            acc = v['accounts'].get(p['provider'])
+            if acc and acc['state'] == 'PUBLISHED': continue      # one published post per account counts
+            acc = {'state': p['state'], 'url': p.get('releaseURL'), 'post_id': p['id']}
+            if p['state'] == 'PUBLISHED':
+                try: acc.update(analytics(p['id']))
+                except Exception as ex: acc['analytics_error'] = str(ex)[:200]
+            v['accounts'][p['provider']] = acc
+        v['views'] = sum(x.get('views', 0) for x in v['accounts'].values())
+        e['posted'] = sorted(k for k, x in v['accounts'].items() if x['state'] == 'PUBLISHED')
+        e['failed'] = sorted(k for k, x in v['accounts'].items() if x['state'] == 'ERROR')
+        e['posts'] = {k: [x['post_id']] for k, x in v['accounts'].items() if x['state'] == 'PUBLISHED'}
+    STATS.write_text(json.dumps({'updated': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'),
+                                 'videos': list(vids.values())}, indent=1, ensure_ascii=False))
+    HIST.write_text(json.dumps(h, indent=1, ensure_ascii=False))
+    for v in sorted(vids.values(), key=lambda v: v['date']):
+        accs = '  '.join(f"{k} {x.get('views', x['state'])}" for k, x in sorted(v['accounts'].items()))
+        print(f"{v['date']}  {v['series']} {v['lang']}  {v['views']:>6}  {accs:42}  {v['title'][:60]}")
+
+
 def cmd_record(a):
     out = Path(a.dir).resolve()
     h = history()
@@ -320,7 +397,9 @@ def cmd_record(a):
         if (out / f).exists(): title = json.loads((out / f).read_text()).get('title', ''); break
     h.append({'date': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), 'series': a.series, 'lang': a.lang, 'title': title,
               'dir': out.name, 'posted': [p.get('provider') for p in pub.get('posted', []) if 'error' not in p],
-              'failed': [p.get('provider') for p in pub.get('posted', []) if 'error' in p]})
+              'failed': [p.get('provider') for p in pub.get('posted', []) if 'error' in p],
+              'posts': {p['provider']: p.get('post_ids') or re.findall(r'"postId":\s*"([^"]+)"', p.get('result', ''))
+                        for p in pub.get('posted', []) if 'error' not in p}})
     HIST.parent.mkdir(exist_ok=True); HIST.write_text(json.dumps(h, indent=1, ensure_ascii=False))
     if a.series == 'pot':
         qf = HERE / 'topics' / 'pot.yaml'; q = yaml.safe_load(qf.read_text()) or []
@@ -336,6 +415,8 @@ if __name__ == '__main__':
     p = sp.add_parser('publish'); p.add_argument('dir'); p.add_argument('--dry-run', action='store_true'); p.add_argument('--force', action='store_true'); p.add_argument('--only', choices=['tiktok', 'instagram', 'facebook']); p.set_defaults(f=cmd_publish)
     p = sp.add_parser('publish-tip'); p.add_argument('dir'); p.add_argument('--lang', required=True, choices=['en', 'fr']); p.add_argument('--dry-run', action='store_true'); p.add_argument('--force', action='store_true'); p.add_argument('--only', choices=['tiktok', 'instagram', 'facebook']); p.set_defaults(f=cmd_publish_tip)
     p = sp.add_parser('status'); p.add_argument('dir'); p.set_defaults(f=cmd_status)
+    p = sp.add_parser('stats'); p.add_argument('--days', type=int, default=60); p.set_defaults(f=cmd_stats)
+    p = sp.add_parser('requeue'); p.add_argument('--days', type=int, default=7); p.add_argument('--dry-run', action='store_true'); p.set_defaults(f=cmd_requeue)
     p = sp.add_parser('credits'); p.set_defaults(f=cmd_credits)
     p = sp.add_parser('voice'); p.add_argument('lang', choices=['en', 'fr']); p.set_defaults(f=lambda a: print(CFG['voices'][a.lang]['id']))
     p = sp.add_parser('record'); p.add_argument('dir'); p.add_argument('--series', required=True, choices=['pot', 'tip']); p.add_argument('--lang', required=True, choices=['en', 'fr']); p.set_defaults(f=cmd_record)
