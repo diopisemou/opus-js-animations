@@ -1,7 +1,7 @@
 # The daily run (what the scheduled session does)
 
-A daily Routine starts a **fresh session** that follows this file (edit it here, not in the Routine). The session
-knows nothing about earlier days except what is committed on branch `ridesentinel-videos`:
+Each day a launcher creates a **fresh session** with this repository checked out (its prompt is `LAUNCH.md`); that
+session follows this file (edit it here, not in the Routine). The session knows nothing about earlier days except what is committed on branch `ridesentinel-videos`:
 - `state/NOTES.md`: the memory (lessons, incidents, what works). Read it first; update it last.
 - `state/history.json`: every video and where it went; `state/stats.json`: views per video and account.
 - `topics/pot.yaml`, `tips/<lang>/topics.yaml`: what comes next.
