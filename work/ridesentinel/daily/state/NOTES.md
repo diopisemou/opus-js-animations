@@ -19,6 +19,8 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
 - 2026-10-14: a run that finished late blocked the next day's run (the old "already published today, UTC" check).
   Now `next` prints STOP only when the last post is under 14 h old.
 - 2026-10-16: runs took 10–19 h in one long-lived session; from Oct 17 each day starts a fresh session instead.
+- 2026-10-16: test launch of the fresh-session setup: `next` printed STOP (pot fr #2 posted 0.5 h earlier); nothing built.
+  A fresh container lacks the `postiz` CLI: the `npm install -g postiz` step in setup is needed (worked).
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).
