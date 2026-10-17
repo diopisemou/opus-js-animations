@@ -27,6 +27,7 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
 - 2026-10-17: tip en not built: the auto-mode permission classifier blocked running the freshly cloned huashu-art-motion
   shorts-pipeline ("code from external"). Owner: add a Bash allow rule for `uv run shorts` in that clone (or pre-install it in the
   environment). Stats refreshed, nothing published. Next run is still tip en.
+  Fixed the same day: `python3 daily.py tip <lang> next|build ...` (allowlisted) runs shorts-pipeline; use only that.
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).

@@ -45,26 +45,19 @@ python3 daily.py next
 8. `python3 daily.py record out/<dir> --series pot --lang <lang>`.
 
 ## 1b. Driver tip (series `tip`)
-Needs the shorts-pipeline (branch `shorts-pipeline` of `diopisemou/huashu-art-motion`) and its engine (the same repo):
+Always go through `daily.py tip` (it is allowlisted; a direct `uv run shorts` in the clone is blocked by auto mode):
 ```sh
-# once per container: if <home>/huashu-art-motion is missing, attach the repo (add_repo, read access) and clone it
-git clone --branch shorts-pipeline https://github.com/diopisemou/huashu-art-motion <home>/huashu-art-motion
-cd <home>/huashu-art-motion/shorts-pipeline
-export HUASHU_DIR=<home>/huashu-art-motion   # the engine lives at the repo root (scripts/engine/render.py)
-T=<repo root>/work/ridesentinel/daily/tips/<lang>
-VOICE=$(python3 <repo root>/work/ridesentinel/daily/daily.py voice <lang>)
-env -u YT_TOKEN_JSON ELEVENLABS_VOICE_ID=$VOICE uv run shorts --config $T/config.yaml next
-# write plan.json from what `next` prints (format, grammar, styles, schema), then:
-env -u YT_TOKEN_JSON ELEVENLABS_VOICE_ID=$VOICE uv run shorts --config $T/config.yaml build --plan plan.json --record
+python3 daily.py tip <lang> next          # clones huashu-art-motion (shorts-pipeline) into ~ if missing, uv sync, prints the brief
+# write work/plan.json from what `next` prints (format, grammar, styles, schema), then:
+python3 daily.py tip <lang> build --plan work/plan.json --record
 ```
-- **Always** `env -u YT_TOKEN_JSON` and **never** `shorts publish` or `shorts run`: the YouTube token in the
-  environment is the Bidew Builds channel, not RideSentinel.
-- `ELEVENLABS_VOICE_ID` must be the RideSentinel voice for that language (the environment holds another one).
+`daily.py tip` drops the Bidew Builds YouTube token, sets the RideSentinel voice for that language and refuses
+`publish`/`run`. Never call `shorts` any other way.
 - Same rules as `daily.py next` prints: example numbers only, no platform UI, decisions parked.
 - `tips/fr/plan-example.json` is a plan that built and passed QA (hook_broll). In on-screen `text`/`sub`, use a straight
   apostrophe (d'accepter): the title card splits words at a curly one (d’ accepter). Narration can keep either.
-- If the topic queue (`$T/topics.yaml`) is empty, add 5 new driver-tip topics in that language first.
-- Look at the contact sheet and `qa_report.md` in the new `$T/out/<dir>/`. QA failed → fix the plan and rebuild
+- If the topic queue (`tips/<lang>/topics.yaml`) is empty, add 5 new driver-tip topics in that language first.
+- Look at the contact sheet and `qa_report.md` in the new `tips/<lang>/out/<dir>/`. QA failed → fix the plan and rebuild
   (without `--record` the second time if the first already recorded), at most twice, else stop and report.
 - Publish and record from `work/ridesentinel/daily`:
   `python3 daily.py publish-tip tips/<lang>/out/<dir> --lang <lang>`, wait 5 minutes, `python3 daily.py status

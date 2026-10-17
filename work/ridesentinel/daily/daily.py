@@ -13,6 +13,8 @@ TikTok, Instagram and Facebook accounts through Postiz.
   python3 daily.py stats                      views/likes per video from Postiz -> state/stats.json (also fixes history)
   python3 daily.py requeue [--dry-run]        re-queue posts in ERROR (an account was down), at most one per video and account
   python3 daily.py voice en|fr                the RideSentinel voice id for a language (for shorts-pipeline)
+  python3 daily.py tip en|fr next|build ...   run shorts-pipeline for a driver tip: clones it if needed, sets the voice,
+                                              drops the Bidew YouTube token, refuses `publish` and `run`
 
 Run from work/ridesentinel/daily. Keys come from the environment (ELEVENLABS_API_KEY, POSTIZ_API_KEY), never from files here.
 """
@@ -93,12 +95,10 @@ Then run `python3 daily.py calc spec.json` and write the six lines with ITS figu
  6 cta: {CFG["cta"][lang]}
 Keep the whole script under {CFG["max_words"]} words. Then `python3 daily.py build spec.json`.''')
     else:
-        print(f'''DRIVER TIP via shorts-pipeline (config: {HERE / "tips" / lang / "config.yaml"}):
-  (clone: git clone --branch shorts-pipeline https://github.com/diopisemou/huashu-art-motion <home>/huashu-art-motion)
-  export HUASHU_DIR=<home>/huashu-art-motion     # the engine is the repo root
-  cd $HUASHU_DIR/shorts-pipeline && env -u YT_TOKEN_JSON ELEVENLABS_VOICE_ID={CFG["voices"][lang]["id"]} uv run shorts --config {HERE / "tips" / lang / "config.yaml"} next
-  write plan.json from its output, then:
-  env -u YT_TOKEN_JSON ELEVENLABS_VOICE_ID={CFG["voices"][lang]["id"]} uv run shorts --config {HERE / "tips" / lang / "config.yaml"} build --plan plan.json --record
+        print(f'''DRIVER TIP via shorts-pipeline (config: {HERE / "tips" / lang / "config.yaml"}); always through daily.py:
+  python3 daily.py tip {lang} next
+  write work/plan.json from its output, then:
+  python3 daily.py tip {lang} build --plan work/plan.json --record
   look at the sheet and qa_report.md, then: python3 daily.py publish-tip {HERE / "tips" / lang / "out"}/<dir> --lang {lang}
   (the full procedure: ROUTINE.md)
 NEVER run `shorts publish` for RideSentinel: it uploads to the Bidew Builds YouTube channel.''')
@@ -388,6 +388,23 @@ def cmd_stats(a):
         print(f"{v['date']}  {v['series']} {v['lang']}  {v['views']:>6}  {accs:42}  {v['title'][:60]}")
 
 
+def cmd_tip(a):
+    """shorts-pipeline for a driver tip, with the RideSentinel voice and without the Bidew Builds YouTube token."""
+    if not a.args or a.args[0] not in ('next', 'build', 'preview'):
+        sys.exit('daily.py tip <lang> next | build --plan plan.json [--record] | preview --plan plan.json')
+    hu = Path(os.environ.get('HUASHU_DIR') or Path.home() / 'huashu-art-motion')
+    if not (hu / 'scripts' / 'engine' / 'render.py').exists():
+        print(f'cloning huashu-art-motion (shorts-pipeline branch) into {hu}', flush=True)
+        sh('git', 'clone', '--depth', '1', '--branch', 'shorts-pipeline', 'https://github.com/diopisemou/huashu-art-motion', hu)
+    sp_dir = hu / 'shorts-pipeline'
+    if not (sp_dir / '.venv').exists(): sh('uv', 'sync', cwd=sp_dir)
+    env = {k: v for k, v in os.environ.items() if k != 'YT_TOKEN_JSON'}
+    env.update(HUASHU_DIR=str(hu), ELEVENLABS_VOICE_ID=CFG['voices'][a.lang]['id'])
+    args = [str(Path(x).resolve()) if Path(x).exists() else x for x in a.args]   # paths relative to here
+    cmd = ['uv', 'run', 'shorts', '--config', str(HERE / 'tips' / a.lang / 'config.yaml'), *args]
+    sys.exit(subprocess.run(cmd, cwd=sp_dir, env=env).returncode)
+
+
 def cmd_record(a):
     out = Path(a.dir).resolve()
     h = history()
@@ -415,6 +432,7 @@ if __name__ == '__main__':
     p = sp.add_parser('publish'); p.add_argument('dir'); p.add_argument('--dry-run', action='store_true'); p.add_argument('--force', action='store_true'); p.add_argument('--only', choices=['tiktok', 'instagram', 'facebook']); p.set_defaults(f=cmd_publish)
     p = sp.add_parser('publish-tip'); p.add_argument('dir'); p.add_argument('--lang', required=True, choices=['en', 'fr']); p.add_argument('--dry-run', action='store_true'); p.add_argument('--force', action='store_true'); p.add_argument('--only', choices=['tiktok', 'instagram', 'facebook']); p.set_defaults(f=cmd_publish_tip)
     p = sp.add_parser('status'); p.add_argument('dir'); p.set_defaults(f=cmd_status)
+    p = sp.add_parser('tip'); p.add_argument('lang', choices=['en', 'fr']); p.add_argument('args', nargs=argparse.REMAINDER); p.set_defaults(f=cmd_tip)
     p = sp.add_parser('stats'); p.add_argument('--days', type=int, default=60); p.set_defaults(f=cmd_stats)
     p = sp.add_parser('requeue'); p.add_argument('--days', type=int, default=7); p.add_argument('--dry-run', action='store_true'); p.set_defaults(f=cmd_requeue)
     p = sp.add_parser('credits'); p.set_defaults(f=cmd_credits)
