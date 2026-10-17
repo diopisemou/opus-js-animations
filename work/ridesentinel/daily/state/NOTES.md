@@ -24,6 +24,9 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
   The checkout starts on a detached HEAD with a stale local `ridesentinel-videos`: before committing run
   `git checkout -B ridesentinel-videos HEAD` (HEAD is the pulled tip), or the push sends the old ref and is rejected.
 - 2026-10-16 20:54 UTC: another launch hit STOP (pot fr #2 posted 5 h earlier); stats refreshed, nothing built. Next is tip en.
+- 2026-10-17: tip en not built: the auto-mode permission classifier blocked running the freshly cloned huashu-art-motion
+  shorts-pipeline ("code from external"). Owner: add a Bash allow rule for `uv run shorts` in that clone (or pre-install it in the
+  environment). Stats refreshed, nothing published. Next run is still tip en.
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).
