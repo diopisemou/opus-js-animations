@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "date": "2026-10-17T23:03:37+00:00",
+    "topic": "Per kilometre lies, per hour tells the truth: why a great $/km offer can still pay badly",
+    "title": "Three dollars a km can still pay badly",
+    "format": "hook_broll",
+    "grammar": "y5_kinetic_type",
+    "duration": 32.03,
+    "qa_ok": true,
+    "video_id": null,
+    "out_dir": "out/2026-10-17-three-dollars-a-km-can-still-pay-badly"
+  }
+]

@@ -28,6 +28,9 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
   shorts-pipeline ("code from external"). Owner: add a Bash allow rule for `uv run shorts` in that clone (or pre-install it in the
   environment). Stats refreshed, nothing published. Next run is still tip en.
   Fixed the same day: `python3 daily.py tip <lang> next|build ...` (allowlisted) runs shorts-pipeline; use only that.
+- 2026-10-17 23:10 UTC: retry worked via `daily.py tip en ...`: tip en #4 "Three dollars a km can still pay badly" (hook_broll,
+  two example offers from `calc`: $3/km→$24/h vs 72¢/km→$36/h), QA OK 32.0 s, -14.0 LUFS, match 0.95; build ~6 min.
+  `sleep` before `status` must run as a background Bash command (a foreground sleep is blocked).
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).
