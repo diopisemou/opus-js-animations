@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-17T22:56:59+00:00",
+ "updated": "2026-10-18T20:53:58+00:00",
  "videos": [
   {
    "title": "Would you take $18.40 at 2 a.m.? | Pass or Take #1",
@@ -78,13 +78,13 @@
    "date": "2026-10-16",
    "series": "pot",
    "lang": "fr",
-   "views": 152,
+   "views": 178,
    "accounts": {
     "tiktok": {
      "state": "PUBLISHED",
      "url": "https://www.tiktok.com/@ridesentinel/video/7697294711589063937",
      "post_id": "cmvb5b0br0qx6lu0yhsgcygee",
-     "views": 122,
+     "views": 148,
      "likes": 0,
      "comments": 0,
      "shares": 0
@@ -104,6 +104,42 @@
      "post_id": "cmvb5b1zx0qx8lu0ykjvmr0cz",
      "views": 3,
      "likes": 1,
+     "comments": 0,
+     "shares": 0
+    }
+   }
+  },
+  {
+   "title": "Three dollars a km can still pay badly",
+   "date": "2026-10-17",
+   "series": "tip",
+   "lang": "en",
+   "views": 502,
+   "accounts": {
+    "tiktok": {
+     "state": "PUBLISHED",
+     "url": "https://www.tiktok.com/@ridesentinel",
+     "post_id": "cmvd0737i0cvnlk0yu0o35209",
+     "views": 224,
+     "likes": 5,
+     "comments": 0,
+     "shares": 0
+    },
+    "facebook": {
+     "state": "PUBLISHED",
+     "url": "https://www.facebook.com/reel/2758343151295947",
+     "post_id": "cmvd0768m0cfur50ydihyfgl5",
+     "views": 164,
+     "likes": 0,
+     "comments": 0,
+     "shares": 0
+    },
+    "instagram": {
+     "state": "PUBLISHED",
+     "url": "https://www.instagram.com/reel/DenQDwBjLBX/",
+     "post_id": "cmvd073ut0cvplk0ymzxx9kt6",
+     "views": 114,
+     "likes": 0,
      "comments": 0,
      "shares": 0
     }
