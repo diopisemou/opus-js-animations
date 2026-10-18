@@ -1,5 +1,4 @@
 # Pass-or-Take scenario seeds; daily.py record pops the first.
-- 'You get seconds to decide: $21 for 18 min, 4 min pickup, drops in a busy area, no drive back (TAKE, the math in one look)'
 - 'The per-km trap: $11.60 for a 4 km hop looks like $2.90/km, but a 15 min pickup and 12 min in traffic make it a bad hour (PASS)'
 - 'The long cheap ride: $10.50 for 26 min across town in traffic, 8 min pickup, ends where demand is fine (PASS on time alone)'
 - Airport run at 5 a.m., $52 for 35 min, but a 20 min pickup and a long airport queue or empty return

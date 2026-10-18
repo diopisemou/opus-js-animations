@@ -31,6 +31,11 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
 - 2026-10-17 23:10 UTC: retry worked via `daily.py tip en ...`: tip en #4 "Three dollars a km can still pay badly" (hook_broll,
   two example offers from `calc`: $3/km→$24/h vs 72¢/km→$36/h), QA OK 32.0 s, -14.0 LUFS, match 0.95; build ~6 min.
   `sleep` before `status` must run as a background Bash command (a foreground sleep is blocked).
+- 2026-10-18 21:04 UTC: pot en #3 "Seconds to decide: $21 for 18 minutes?" (first TAKE; skipped the per-km seed since
+  tip en #4 just used that angle; reordered pot.yaml so `record` popped the used seed). QA OK 31.95 s, -14.7 LUFS, match 0.93.
+  TikTok posts:create got a Postiz 502 ("Application failed to respond") = NOT CREATED; IG+FB fine. Checked posts:list
+  (no TikTok post existed), then `publish --only tiktok` worked. `record` had already run: patched history.json by hand
+  rather than re-recording (re-record duplicates the entry and pops another seed). Run `record` only after all posts exist.
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).
