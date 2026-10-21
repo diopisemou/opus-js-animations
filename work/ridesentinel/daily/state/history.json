@@ -126,20 +126,20 @@
   "title": "Votre seuil en $ de l’heure, fixé en une soirée",
   "dir": "2026-10-21-votre-seuil-en-de-lheure-fixe-en-une-soiree",
   "posted": [
-   "tiktok",
+   "facebook",
    "instagram",
-   "facebook"
+   "tiktok"
   ],
   "failed": [],
   "posts": {
    "tiktok": [
     "cmvhwvi10086uta0ygkfcwyd2"
    ],
-   "instagram": [
-    "cmvhwvivb0876oh0yry19rvwj"
-   ],
    "facebook": [
     "cmvhwvjuj0870ta0yp3b1f9ak"
+   ],
+   "instagram": [
+    "cmvhwvivb0876oh0yry19rvwj"
    ]
   }
  }

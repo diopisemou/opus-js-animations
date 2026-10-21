@@ -44,6 +44,8 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
   40 min total = 21 $/h). QA OK 36.7 s, -14.0 LUFS, match 0.93; pace warning 215 wpm: 119 words is too many for this voice,
   aim for ≤ 100. Lint blocks digits in the description without `facts`: keep figures out of the description. All 3 PUBLISHED.
   Fixed `record`: it took the empty title of shorts' render spec.json; it now uses the first spec/plan with a title.
+- 2026-10-21 ~20:55 UTC: second launch the same day hit STOP (tip fr #6 posted 11.3 h earlier); stats refreshed, nothing built.
+  Next is pot fr (seed: the per-km trap, $11.60 / 4 km, PASS).
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).

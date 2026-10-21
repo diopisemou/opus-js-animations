@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-21T09:35:50+00:00",
+ "updated": "2026-10-21T20:53:31+00:00",
  "videos": [
   {
    "title": "Would you take $18.40 at 2 a.m.? | Pass or Take #1",
@@ -42,13 +42,13 @@
    "date": "2026-10-14",
    "series": "tip",
    "lang": "fr",
-   "views": 481,
+   "views": 569,
    "accounts": {
     "instagram": {
      "state": "PUBLISHED",
      "url": "https://www.instagram.com/reel/DewE3OsDvn9/",
      "post_id": "cmvb52bhe0qpwo00yapqm8l6c",
-     "views": 0,
+     "views": 88,
      "likes": 0,
      "comments": 0,
      "shares": 0
@@ -114,13 +114,13 @@
    "date": "2026-10-17",
    "series": "tip",
    "lang": "en",
-   "views": 506,
+   "views": 507,
    "accounts": {
     "tiktok": {
      "state": "PUBLISHED",
      "url": "https://www.tiktok.com/@ridesentinel/video/7697777238875393287",
      "post_id": "cmvd0737i0cvnlk0yu0o35209",
-     "views": 228,
+     "views": 229,
      "likes": 5,
      "comments": 0,
      "shares": 0
@@ -150,7 +150,7 @@
    "date": "2026-10-18",
    "series": "pot",
    "lang": "en",
-   "views": 466,
+   "views": 467,
    "accounts": {
     "tiktok": {
      "state": "PUBLISHED",
@@ -165,7 +165,7 @@
      "state": "PUBLISHED",
      "url": "https://www.facebook.com/reel/3727578170733370",
      "post_id": "cmveb8zku0291p10ycqzaboq3",
-     "views": 214,
+     "views": 215,
      "likes": 0,
      "comments": 0,
      "shares": 0
@@ -182,12 +182,40 @@
    }
   },
   {
-   "title": "",
+   "title": "Votre seuil en $ de l’heure, fixé en une soirée",
    "date": "2026-10-21",
    "series": "tip",
    "lang": "fr",
-   "views": 0,
-   "accounts": {}
+   "views": 165,
+   "accounts": {
+    "tiktok": {
+     "state": "PUBLISHED",
+     "url": "https://www.tiktok.com/@ridesentinel",
+     "post_id": "cmvhwvi10086uta0ygkfcwyd2",
+     "views": 160,
+     "likes": 6,
+     "comments": 0,
+     "shares": 0
+    },
+    "facebook": {
+     "state": "PUBLISHED",
+     "url": "https://www.facebook.com/reel/1063157140083354",
+     "post_id": "cmvhwvjuj0870ta0yp3b1f9ak",
+     "views": 0,
+     "likes": 0,
+     "comments": 0,
+     "shares": 0
+    },
+    "instagram": {
+     "state": "PUBLISHED",
+     "url": "https://www.instagram.com/reel/DewGERcE37X/",
+     "post_id": "cmvhwvivb0876oh0yry19rvwj",
+     "views": 5,
+     "likes": 0,
+     "comments": 0,
+     "shares": 0
+    }
+   }
   }
  ]
 }
