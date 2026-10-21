@@ -37,7 +37,7 @@
   "failed": [],
   "posts": {
    "instagram": [
-    "cmv7q179u1nizle0ysnoz2e1x"
+    "cmvb52bhe0qpwo00yapqm8l6c"
    ],
    "tiktok": [
     "cmv7q16ir1nixle0yu3l46igt"
@@ -102,20 +102,44 @@
   "title": "Seconds to decide: $21 for 18 minutes? | Pass or Take #3",
   "dir": "2026-10-18-seconds-to-decide",
   "posted": [
-   "instagram",
    "facebook",
+   "instagram",
    "tiktok"
   ],
   "failed": [],
   "posts": {
-   "instagram": [
-    "cmveb8yrc028tp10ylnur4oid"
+   "tiktok": [
+    "cmvebg0hk02dup10yosxi8xe3"
    ],
    "facebook": [
     "cmveb8zku0291p10ycqzaboq3"
    ],
+   "instagram": [
+    "cmveb8yrc028tp10ylnur4oid"
+   ]
+  }
+ },
+ {
+  "date": "2026-10-21T09:36:03+00:00",
+  "series": "tip",
+  "lang": "fr",
+  "title": "Votre seuil en $ de l’heure, fixé en une soirée",
+  "dir": "2026-10-21-votre-seuil-en-de-lheure-fixe-en-une-soiree",
+  "posted": [
+   "tiktok",
+   "instagram",
+   "facebook"
+  ],
+  "failed": [],
+  "posts": {
    "tiktok": [
-    "cmvebg0hk02dup10yosxi8xe3"
+    "cmvhwvi10086uta0ygkfcwyd2"
+   ],
+   "instagram": [
+    "cmvhwvivb0876oh0yry19rvwj"
+   ],
+   "facebook": [
+    "cmvhwvjuj0870ta0yp3b1f9ak"
    ]
   }
  }

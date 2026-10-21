@@ -36,6 +36,14 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
   TikTok posts:create got a Postiz 502 ("Application failed to respond") = NOT CREATED; IG+FB fine. Checked posts:list
   (no TikTok post existed), then `publish --only tiktok` worked. `record` had already run: patched history.json by hand
   rather than re-recording (re-record duplicates the entry and pops another seed). Run `record` only after all posts exist.
+- 2026-10-19/20: no run (the launcher's wake-ups were delivered ~36 h and ~12 h late). Oct 21 was a catch-up run, one video only.
+- 2026-10-21: `requeue` re-posted the Oct 16 Instagram ERROR of tip fr "Les 3 chiffres" (its IG views now read 0 in
+  stats: the new post replaced the old id). Check IG shows one copy, not a duplicate.
+- 2026-10-21 09:35 UTC: tip fr #6 "Votre seuil en $ de l'heure, fixé en une soirée" (explainer, y3_whiteboard; moved this
+  topic ahead of the per-km one, which tip en #4 just used). Example figures from `calc` (150 $/6 h = 25 $/h; 14 $ for
+  40 min total = 21 $/h). QA OK 36.7 s, -14.0 LUFS, match 0.93; pace warning 215 wpm: 119 words is too many for this voice,
+  aim for ≤ 100. Lint blocks digits in the description without `facts`: keep figures out of the description. All 3 PUBLISHED.
+  Fixed `record`: it took the empty title of shorts' render spec.json; it now uses the first spec/plan with a title.
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).

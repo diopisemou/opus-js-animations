@@ -9,5 +9,23 @@
     "qa_ok": true,
     "video_id": null,
     "out_dir": "out/2026-10-14-les-3-chiffres-a-verifier-avant-daccepter-une-co"
+  },
+  {
+    "date": "2026-10-21T09:29:30+00:00",
+    "topic": "Votre seuil en dollars de l’heure : comment le fixer en une soirée",
+    "title": "Votre seuil en $ de l’heure, fixé en une soirée",
+    "format": "explainer",
+    "grammar": "y3_whiteboard",
+    "duration": 36.73,
+    "qa_ok": true,
+    "video_id": null,
+    "out_dir": "out/2026-10-21-votre-seuil-en-de-lheure-fixe-en-une-soiree",
+    "metrics": {
+      "words": 119,
+      "pace_wpm": 215.0,
+      "frozen_pct": 0.0,
+      "longest_still_s": 0.0,
+      "lint_warnings": 0
+    }
   }
 ]

@@ -411,7 +411,7 @@ def cmd_record(a):
     pub = json.loads((out / 'publish.json').read_text()) if (out / 'publish.json').exists() else {}
     title = ''
     for f in ('spec.json', 'plan.json'):
-        if (out / f).exists(): title = json.loads((out / f).read_text()).get('title', ''); break
+        if (out / f).exists() and json.loads((out / f).read_text()).get('title'): title = json.loads((out / f).read_text())['title']; break
     h.append({'date': dt.datetime.now(dt.timezone.utc).isoformat(timespec='seconds'), 'series': a.series, 'lang': a.lang, 'title': title,
               'dir': out.name, 'posted': [p.get('provider') for p in pub.get('posted', []) if 'error' not in p],
               'failed': [p.get('provider') for p in pub.get('posted', []) if 'error' in p],

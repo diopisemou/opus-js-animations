@@ -1,18 +1,18 @@
 {
- "updated": "2026-10-18T20:53:58+00:00",
+ "updated": "2026-10-21T09:35:50+00:00",
  "videos": [
   {
    "title": "Would you take $18.40 at 2 a.m.? | Pass or Take #1",
    "date": "2026-10-09",
    "series": "pot",
    "lang": "en",
-   "views": 236,
+   "views": 238,
    "accounts": {
     "tiktok": {
      "state": "PUBLISHED",
      "url": "https://www.tiktok.com/@ridesentinel/video/7694734414525517064",
      "post_id": "cmv1aeb7g0f6eqz0yhwk25fqc",
-     "views": 172,
+     "views": 173,
      "likes": 4,
      "comments": 0,
      "shares": 0
@@ -21,7 +21,7 @@
      "state": "PUBLISHED",
      "url": "https://www.facebook.com/reel/1762129195037648",
      "post_id": "cmv1aeecp0f6gqz0y9opvsc0l",
-     "views": 52,
+     "views": 53,
      "likes": 0,
      "comments": 0,
      "shares": 0
@@ -42,13 +42,13 @@
    "date": "2026-10-14",
    "series": "tip",
    "lang": "fr",
-   "views": 499,
+   "views": 481,
    "accounts": {
     "instagram": {
      "state": "PUBLISHED",
-     "url": "https://www.instagram.com/reel/Dej7T51js9m/",
-     "post_id": "cmv7q179u1nizle0ysnoz2e1x",
-     "views": 18,
+     "url": "https://www.instagram.com/reel/DewE3OsDvn9/",
+     "post_id": "cmvb52bhe0qpwo00yapqm8l6c",
+     "views": 0,
      "likes": 0,
      "comments": 0,
      "shares": 0
@@ -78,14 +78,14 @@
    "date": "2026-10-16",
    "series": "pot",
    "lang": "fr",
-   "views": 178,
+   "views": 270,
    "accounts": {
     "tiktok": {
      "state": "PUBLISHED",
      "url": "https://www.tiktok.com/@ridesentinel/video/7697294711589063937",
      "post_id": "cmvb5b0br0qx6lu0yhsgcygee",
-     "views": 148,
-     "likes": 0,
+     "views": 240,
+     "likes": 1,
      "comments": 0,
      "shares": 0
     },
@@ -103,7 +103,7 @@
      "url": "https://www.instagram.com/reel/Dej7bIhApb2/",
      "post_id": "cmvb5b1zx0qx8lu0ykjvmr0cz",
      "views": 3,
-     "likes": 1,
+     "likes": 2,
      "comments": 0,
      "shares": 0
     }
@@ -114,13 +114,13 @@
    "date": "2026-10-17",
    "series": "tip",
    "lang": "en",
-   "views": 502,
+   "views": 506,
    "accounts": {
     "tiktok": {
      "state": "PUBLISHED",
-     "url": "https://www.tiktok.com/@ridesentinel",
+     "url": "https://www.tiktok.com/@ridesentinel/video/7697777238875393287",
      "post_id": "cmvd0737i0cvnlk0yu0o35209",
-     "views": 224,
+     "views": 228,
      "likes": 5,
      "comments": 0,
      "shares": 0
@@ -144,6 +144,50 @@
      "shares": 0
     }
    }
+  },
+  {
+   "title": "Seconds to decide: $21 for 18 minutes? | Pass or Take #3",
+   "date": "2026-10-18",
+   "series": "pot",
+   "lang": "en",
+   "views": 466,
+   "accounts": {
+    "tiktok": {
+     "state": "PUBLISHED",
+     "url": "https://www.tiktok.com/@ridesentinel/video/7698118027388275986",
+     "post_id": "cmvebg0hk02dup10yosxi8xe3",
+     "views": 214,
+     "likes": 5,
+     "comments": 0,
+     "shares": 0
+    },
+    "facebook": {
+     "state": "PUBLISHED",
+     "url": "https://www.facebook.com/reel/3727578170733370",
+     "post_id": "cmveb8zku0291p10ycqzaboq3",
+     "views": 214,
+     "likes": 0,
+     "comments": 0,
+     "shares": 0
+    },
+    "instagram": {
+     "state": "PUBLISHED",
+     "url": "https://www.instagram.com/reel/DepmxjWCfKS/",
+     "post_id": "cmveb8yrc028tp10ylnur4oid",
+     "views": 38,
+     "likes": 0,
+     "comments": 0,
+     "shares": 0
+    }
+   }
+  },
+  {
+   "title": "",
+   "date": "2026-10-21",
+   "series": "tip",
+   "lang": "fr",
+   "views": 0,
+   "accounts": {}
   }
  ]
 }
