@@ -49,6 +49,9 @@ know (an account down, a fix, a format that did well or badly). Merge or delete 
 - 2026-10-22 ~21:20 UTC: pot fr #4 "11,60 $ pour 4 km : le piège du kilomètre" (PASS, 15 min pickup + 12 min trip,
   no drive back, 26 $/h vs bar 30). QA OK 34.9 s, -14.1 LUFS, match 0.86 (Scribe heard "Passez" as "Pas assez"; harmless).
   Stamp held ~1.5 s (23.2–24.7 s). All 3 PUBLISHED. A second `publish` on the same dir is refused (publish.json guard).
+- 2026-10-23: Postiz API answered 401 "No subscription found" to posts:list and integrations:list (stats/requeue
+  failed too). Nothing built or published; ElevenLabs 67k chars left. Owner: renew the Postiz subscription/API key.
+  Next run is still tip en; first check `postiz integrations:list` works.
 
 ## Craft
 - Pass or Take: hold the PASS/TAKE stamp ≥ 1.5 s; pull frames around the verdict from final.mp4 (the sheet misses it).
